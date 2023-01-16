@@ -17,11 +17,7 @@ body {
   font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+  background: rgb(248 250 252);
 }
 
 img,
@@ -41,4 +37,8 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+}
+
+li {
+  list-style: none;
 }
