@@ -7,6 +7,8 @@ import NavItem from "./NavItem";
 function MobileMenu() {
 	const [open, isOpen] = useState(false);
 
+	const setStatus = () => isOpen((prevStatus) => !prevStatus)
+
 	return (
 		<Flex
 			as="nav"
@@ -18,7 +20,7 @@ function MobileMenu() {
 				bg="gray.100"
 				icon={open ? <AiOutlineClose /> : <HiMenuAlt3 />}
 				cursor="pointer"
-				onClick={() => isOpen((prevStatus) => !prevStatus)}
+				onClick={setStatus}
 				zIndex="1"
 			/>
 			<UnorderedList
@@ -37,9 +39,9 @@ function MobileMenu() {
 				top="0"
 				right="0"
 			>
-				<NavItem to="/top" link="Top Stories" onClick={() => isOpen(prevStatus => !prevStatus)} />
-				<NavItem to="/show" link="Show Stories" onClick={() => isOpen(prevStatus => !prevStatus)} />
-				<NavItem to="/job" link="Job Stories" onClick={() => isOpen(prevStatus => !prevStatus)} />
+				<NavItem to="/top" link="Top Stories" onClick={setStatus} />
+				<NavItem to="/show" link="Show Stories" onClick={setStatus} />
+				<NavItem to="/job" link="Job Stories" onClick={setStatus} />
 			</UnorderedList>
 		</Flex>
 	);
