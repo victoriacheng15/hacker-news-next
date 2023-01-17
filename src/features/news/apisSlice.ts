@@ -9,9 +9,9 @@ export const apiSlice = createApi({
 		getTopStories: builder.query({
 			query: () => "/topstories.json",
 		}),
-    getStory: builder.query({
-      query: (id) => `/item/${id}.json`
-    })
+		getStory: builder.query({
+			query: (id) => `/item/${id}.json`,
+		}),
 	}),
 });
 

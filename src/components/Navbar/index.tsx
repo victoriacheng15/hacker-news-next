@@ -15,9 +15,21 @@ function Navbar() {
 			<Box maxW={1280} mx="auto" w="90%">
 				<UnorderedList as="ul" display="flex" alignItems="center" gap="4">
 					<NavItem display={["none", "none", "block"]} to="/" link={<Logo />} />
-					<NavItem display={["none", "none", "block"]} to="/top" link="Top Stories" />
-					<NavItem display={["none", "none", "block"]} to="/show" link="Show Stories" />
-					<NavItem display={["none", "none", "block"]} to="/job" link="Job Stories" />
+					<NavItem
+						display={["none", "none", "block"]}
+						to="/top"
+						link="Top Stories"
+					/>
+					<NavItem
+						display={["none", "none", "block"]}
+						to="/show"
+						link="Show Stories"
+					/>
+					<NavItem
+						display={["none", "none", "block"]}
+						to="/job"
+						link="Job Stories"
+					/>
 					<MobileMenu />
 				</UnorderedList>
 			</Box>

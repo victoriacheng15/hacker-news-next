@@ -7,7 +7,7 @@ import NavItem from "./NavItem";
 function MobileMenu() {
 	const [open, isOpen] = useState(false);
 
-	const setStatus = () => isOpen((prevStatus) => !prevStatus)
+	const setStatus = () => isOpen((prevStatus) => !prevStatus);
 
 	return (
 		<Flex
