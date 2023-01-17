@@ -37,9 +37,9 @@ function MobileMenu() {
 				top="0"
 				right="0"
 			>
-				<NavItem to="/top" link="Top Stories" onClick={() => isOpen(prev => !prev)} />
-				<NavItem to="/show" link="Show Stories" onClick={() => isOpen(prev => !prev)} />
-				<NavItem to="/job" link="Job Stories" onClick={() => isOpen(prev => !prev)} />
+				<NavItem to="/top" link="Top Stories" onClick={() => isOpen(prevStatus => !prevStatus)} />
+				<NavItem to="/show" link="Show Stories" onClick={() => isOpen(prevStatus => !prevStatus)} />
+				<NavItem to="/job" link="Job Stories" onClick={() => isOpen(prevStatus => !prevStatus)} />
 			</UnorderedList>
 		</Flex>
 	);
