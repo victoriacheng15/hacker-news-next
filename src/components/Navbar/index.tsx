@@ -12,27 +12,22 @@ function Navbar() {
 			color="gray.900"
 			py="0.5rem"
 		>
-			<Box maxW={1280} mx="auto" w="90%">
-				<UnorderedList as="ul" display="flex" alignItems="center" gap="4">
-					<NavItem display={["none", "none", "block"]} to="/" link={<Logo />} />
-					<NavItem
-						display={["none", "none", "block"]}
-						to="/top"
-						link="Top Stories"
-					/>
-					<NavItem
-						display={["none", "none", "block"]}
-						to="/show"
-						link="Show Stories"
-					/>
-					<NavItem
-						display={["none", "none", "block"]}
-						to="/job"
-						link="Job Stories"
-					/>
-					<MobileMenu />
+			<Flex maxW={1280} mx="auto" w="90%" alignItems="center" justifyContent="space-between">
+				<Box>
+					<Logo />
+				</Box>
+				<UnorderedList
+					as="ul"
+					display={["none", "none", "flex"]}
+					alignItems="center"
+					gap="4"
+				>
+					<NavItem to="/top" link="Top Stories" />
+					<NavItem to="/show" link="Show Stories" />
+					<NavItem to="/job" link="Job Stories" />
 				</UnorderedList>
-			</Box>
+				<MobileMenu />
+			</Flex>
 		</Flex>
 	);
 }
