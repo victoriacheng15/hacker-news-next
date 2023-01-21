@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { AppState } from "@/store";
-import {  fetchDetails, initialState  } from "../helpers";
+import { fetchDetails, initialState } from "../helpers";
 
 export const fetchTopDetails = createAsyncThunk(
 	"tops/topsStoryDetails",
@@ -18,7 +18,7 @@ const topsSlice = createSlice({
 		loadMore: (state) => {
 			state.status = "idle";
 			state.limit += 20;
-		}
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -36,7 +36,7 @@ const topsSlice = createSlice({
 	},
 });
 
-export const { loadMore } = topsSlice.actions
+export const { loadMore } = topsSlice.actions;
 
 export const selectTops = (state: AppState) => state.tops;
 

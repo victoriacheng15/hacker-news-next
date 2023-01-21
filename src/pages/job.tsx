@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { fetchJobDetails, selectJobs } from "@/features/job/jobStoriesSlice";
+import { fetchJobDetails, selectJobs } from "@/features/job/jobsSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { loadMore } from "@/features/job/jobStoriesSlice";
+import { loadMore } from "@/features/job/jobsSlice";
 
 function job() {
 	const dispatch = useAppDispatch();

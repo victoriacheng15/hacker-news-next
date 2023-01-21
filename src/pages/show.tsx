@@ -1,10 +1,7 @@
 import { useEffect } from "react";
-import {
-	fetchShowDetails,
-	selectShows,
-} from "@/features/show/showStoriesSlice";
+import { fetchShowDetails, selectShows } from "@/features/show/showsSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { loadMore } from "@/features/show/showStoriesSlice";
+import { loadMore } from "@/features/show/showsSlice";
 
 function show() {
 	const dispatch = useAppDispatch();

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import topsSlice from "@/features/top/topStorisSlice";
-import jobsSlice from "./features/job/jobStoriesSlice";
-import showsSlice from "./features/show/showStoriesSlice";
+import topsSlice from "@/features/top/topsSlice";
+import jobsSlice from "@/features/job/jobsSlice";
+import showsSlice from "@/features/show/showsSlice";
 
 export const store = configureStore({
 	reducer: {

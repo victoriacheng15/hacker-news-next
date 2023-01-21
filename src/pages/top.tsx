@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { fetchTopDetails, selectTops } from "@/features/top/topStorisSlice";
+import { fetchTopDetails, selectTops } from "@/features/top/topsSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { loadMore } from "@/features/top/topStorisSlice";
+import { loadMore } from "@/features/top/topsSlice";
 
 function top() {
 	const dispatch = useAppDispatch();
 
 	const { details, status, error, page, limit } = useAppSelector(selectTops);
-	
+
 	useEffect(() => {
 		if (status === "idle") {
 			dispatch(fetchTopDetails({ page, limit }));
