@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import topStorisReducer from "@/features/top/topStorisSlice";
+import topsSlice from "@/features/top/topStorisSlice";
+import jobsSlice from "./features/job/jobStoriesSlice";
+import showsSlice from "./features/show/showStoriesSlice";
 
 export const store = configureStore({
 	reducer: {
-		topStories: topStorisReducer,
+		[topsSlice.name]: topsSlice.reducer,
+		[showsSlice.name]: showsSlice.reducer,
+		[jobsSlice.name]: jobsSlice.reducer,
 	},
 });
 

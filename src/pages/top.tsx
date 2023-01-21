@@ -1,33 +1,31 @@
 import { useEffect } from "react";
+import { fetchTopDetails, selectTops } from "@/features/top/topStorisSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import {
-	fetchTopStories,
-	selectTopStories,
-	selectTopStoriesError,
-	selectTopStoriesStatus,
-} from "@/features/top/topStorisSlice";
+import { loadMore } from "@/features/top/topStorisSlice";
 
 function top() {
-	const dispatch = useAppDispatch()
-	const topStories = useAppSelector(selectTopStories);
-	const status = useAppSelector(selectTopStoriesStatus);
-	const error = useAppSelector(selectTopStoriesError);
+	const dispatch = useAppDispatch();
 
+	const { details, status, error, page, limit } = useAppSelector(selectTops);
+	
 	useEffect(() => {
 		if (status === "idle") {
-			dispatch(fetchTopStories());
+			dispatch(fetchTopDetails({ page, limit }));
 		}
-	}, [dispatch, status]);
+	}, [dispatch, status, page, limit]);
 
 	return (
 		<>
-			{status === "loading" && <h2>loading</h2>}
 			{error && <h2>something is wrong</h2>}
-			{
-				topStories.map(story => (
-					<div key={story}>{story}</div>
-				))
-			}
+			{details.map((story, index) => (
+				<div key={story.id}>
+					{index + 1} - {story.title} by {story.by}
+				</div>
+			))}
+			{status === "loading" && <h2>loading</h2>}
+			<button type="button" onClick={() => dispatch(loadMore())}>
+				Load more
+			</button>
 		</>
 	);
 }

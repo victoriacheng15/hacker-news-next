@@ -1,46 +1,43 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { AppState } from "@/store";
-import { typeStories } from "../typeStories";
+import {  fetchDetails, initialState  } from "../helpers";
 
-export const fetchTopStories = createAsyncThunk(
-	"topStories/fetchTopStories",
-	async () => {
-		const res = await axios.get(typeStories("top"));
-		return res.data;
+export const fetchTopDetails = createAsyncThunk(
+	"tops/topsStoryDetails",
+	async ({ page, limit }: Pagination) => {
+		const details = await fetchDetails("top", page, limit);
+
+		return { details };
 	},
 );
 
-const initialState: ApiResponse = {
-	data: [],
-	status: "idle",
-	error: false,
-};
-
-const topStoriesSlice = createSlice({
-	name: "topStories",
+const topsSlice = createSlice({
+	name: "tops",
 	initialState,
-	reducers: {},
+	reducers: {
+		loadMore: (state) => {
+			state.status = "idle";
+			state.limit += 20;
+		}
+	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(fetchTopStories.pending, (state) => {
+			.addCase(fetchTopDetails.pending, (state) => {
 				state.status = "loading";
 			})
-			.addCase(fetchTopStories.fulfilled, (state, action) => {
+			.addCase(fetchTopDetails.fulfilled, (state, action) => {
 				state.status = "succeeded";
-				state.data = action.payload;
+				state.details = [...action.payload.details];
 			})
-			.addCase(fetchTopStories.rejected, (state, action) => {
+			.addCase(fetchTopDetails.rejected, (state) => {
 				state.status = "failed";
-				state.error = action.payload;
+				state.error = true;
 			});
 	},
 });
 
-export const selectTopStories = (state: AppState) => state.topStories.data;
-export const selectTopStoriesStatus = (state: AppState) =>
-	state.topStories.status;
-export const selectTopStoriesError = (state: AppState) =>
-	state.topStories.error;
+export const { loadMore } = topsSlice.actions
 
-export default topStoriesSlice.reducer;
+export const selectTops = (state: AppState) => state.tops;
+
+export default topsSlice;
