@@ -6,25 +6,25 @@ interface ApiResponse {
 	limit: number;
 }
 
-type Pagination = Pick<ApiResponse, "page"| "limit">
+type Pagination = Pick<ApiResponse, "page" | "limit">;
 
 interface Story {
-	by: string,
-	id: number,
-	kids: number[],
-	score: number,
-	time: number,
-	title: string,
-	type: "story" | "job",
-	url: string
+	by: string;
+	id: number;
+	kids: number[];
+	score: number;
+	time: number;
+	title: string;
+	type: "story" | "job";
+	url: string;
 }
 
 interface Job {
-	by: string,
-	id: number,
-	score: number,
-	time: number,
-	title: string,
-	type: "story" | "job",
-	url: string
+	by: string;
+	id: number;
+	score: number;
+	time: number;
+	title: string;
+	type: "story" | "job";
+	url: string;
 }

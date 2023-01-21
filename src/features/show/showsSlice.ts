@@ -18,7 +18,7 @@ const showsSlice = createSlice({
 		loadMore: (state) => {
 			state.status = "idle";
 			state.limit += 20;
-		}
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -36,9 +36,8 @@ const showsSlice = createSlice({
 	},
 });
 
-export const { loadMore } = showsSlice.actions
+export const { loadMore } = showsSlice.actions;
 
-export const selectShows = (state: AppState) => state.shows
+export const selectShows = (state: AppState) => state.shows;
 
 export default showsSlice;
-

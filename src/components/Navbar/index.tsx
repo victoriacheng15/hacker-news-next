@@ -12,7 +12,13 @@ function Navbar() {
 			color="gray.900"
 			py="0.5rem"
 		>
-			<Flex maxW={1280} mx="auto" w="90%" alignItems="center" justifyContent="space-between">
+			<Flex
+				maxW={1280}
+				mx="auto"
+				w="90%"
+				alignItems="center"
+				justifyContent="space-between"
+			>
 				<Box>
 					<Logo />
 				</Box>
