@@ -2,7 +2,7 @@ type LoadingStatus = "idle" | "loading" | "succeeded" | "failed";
 
 interface ApiResponse {
 	details: Details;
-	status: LoadingStatus
+	status: LoadingStatus;
 	error: boolean;
 	page: number;
 	limit: number;

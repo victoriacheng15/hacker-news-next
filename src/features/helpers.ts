@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = " https://hacker-news.firebaseio.com/v0";
+const BASE_URL = "https://hacker-news.firebaseio.com/v0";
 const ITEM_URL = `${BASE_URL}/item/`;
 
 function getType(type: string) {
