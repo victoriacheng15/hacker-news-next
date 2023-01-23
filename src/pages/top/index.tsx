@@ -28,15 +28,15 @@ function top() {
 				({ id, title, by, kids, url, time, score }) => (
 					<Story
 						key={id}
+						id={id}
 						title={title}
 						by={by}
 						kids={kids}
 						url={url}
 						time={time}
 						score={score}
-						id={0}
 					/>
-				)
+				),
 			)}
 		</MainContainer>
 	);
