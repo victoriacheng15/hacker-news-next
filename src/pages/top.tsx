@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { fetchTopDetails, selectTops } from "@/features/top/topsSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { loadMore } from "@/features/top/topsSlice";
+import MainContainer from "@/components/MainContainer";
+import PageTitle from "@/components/PageTitle";
+import Story from "@/components/Story";
 
 function top() {
 	const dispatch = useAppDispatch();
@@ -15,18 +18,27 @@ function top() {
 	}, [dispatch, status, page, limit]);
 
 	return (
-		<>
-			{error && <h2>something is wrong</h2>}
-			{details.map((story, index) => (
-				<div key={story.id}>
-					{index + 1} - {story.title} by {story.by}
-				</div>
-			))}
-			{status === "loading" && <h2>loading</h2>}
-			<button type="button" onClick={() => dispatch(loadMore())}>
-				Load more
-			</button>
-		</>
+		<MainContainer
+			status={status}
+			error={error}
+			onClick={() => dispatch(loadMore())}
+		>
+			<PageTitle pageTitle="Top Stories" />
+			{(details as StoryProps[]).map(
+				({ id, title, by, kids, url, time, score }) => (
+					<Story
+						key={id}
+						title={title}
+						by={by}
+						kids={kids}
+						url={url}
+						time={time}
+						score={score}
+						id={0}
+					/>
+				)
+			)}
+		</MainContainer>
 	);
 }
 
