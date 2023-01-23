@@ -3,11 +3,12 @@ import Loading from "./Loading";
 import LoadMoreBtn from "./LoadMoreBtn";
 
 function MainContainer({ children, status, error, onClick }: MainContainerProps) {
+ 
 	return (
 		<Flex
 			as="main"
 			py="8"
-			maxW={1280}
+			maxW={1000}
 			mx="auto"
 			w="90%"
 			flexDir="column"
