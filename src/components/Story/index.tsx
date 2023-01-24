@@ -10,7 +10,7 @@ function Story({ id, title, by, kids, url, time, score }: StoryProps) {
 
 
 	const obj = {
-		kids,
+		kids: kids ? kids: null,
 		title
 	}
 

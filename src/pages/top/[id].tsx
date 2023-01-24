@@ -13,15 +13,18 @@ function Comments() {
 	const router = useRouter();
 	const dispatch = useAppDispatch();
 
-	const { id, object } = router.query;
+	const { object } = router.query;
+	// add condition check for if there is no comment
 	const res = JSON.parse(object as string);
+	console.log(res)
 	const commentIds = res.kids;
 	const title = res.title
-
+	
 	const { comments, status, error } = useAppSelector(selectComments);
+	console.log({commentIds, status, error});
 
 	useEffect(() => {
-		if (status === "idle") {
+		if (status === "idle" && commentIds) {
 			dispatch(fetchComments(commentIds));
 		}
 	}, [dispatch, status, commentIds]);
@@ -30,9 +33,9 @@ function Comments() {
 		<MainContainer>
 			<h1>Comments</h1>
 			<p>{title}</p>
-			{comments.map((comment) => (
+			{commentIds && comments.map((comment) => (
 				<Comment key={comment.id} {...comment} />
-			))}
+			)) || "no comments"}
 			<LoadingInfo status={status} error={error} />
 		</MainContainer>
 	);
