@@ -1,33 +1,31 @@
 import { Flex, Text, Divider } from "@chakra-ui/react";
-import { formatDistanceStrict, fromUnixTime } from "date-fns";
+import { useAppDispatch } from "@/hooks";
+import { clearComments } from "@/features/comments/commentsSlice";
+import { timeAgo } from "../timeFormater";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import StoryTitle from "./StoryTitle";
 
 function Story({ id, title, by, kids, url, time, score }: StoryProps) {
-	const router = useRouter();
+	const dispatch = useAppDispatch();
 
-	const today = new Date();
-	const timeAgo = formatDistanceStrict(fromUnixTime(time), today);
 
-	function click() {
-		router.push({
-			pathname: `/top/${id}`,
-			query: {
-				data: kids,
-			},
-		});
+	const obj = {
+		kids: kids ? kids: null,
+		title
 	}
+
+	const query: { object: string | null } = {
+		object: JSON.stringify(obj),
+	};
 
 	const CommentsLink = () => {
 		return (
-			<Link href={{ pathname: `/top/${id}`, query: { data: kids } }}>
+			<Link href={{ pathname: `/top/${id}`, query }} onClick={() => dispatch(clearComments())}>
 				{kids?.length || 0} comments
 			</Link>
 		);
 	};
 
-	// console.log(kids)
 	return (
 		<Flex
 			as="section"
@@ -42,9 +40,8 @@ function Story({ id, title, by, kids, url, time, score }: StoryProps) {
 			<StoryTitle title={title} url={url} />
 			<Divider />
 			<Text>
-				{score} points | by: {by} | {timeAgo} ago | <CommentsLink />
+				{score} points | by: {by} | {timeAgo(time)} ago | <CommentsLink />
 			</Text>
-			<Link href={`/top/${id}`}>See more comment</Link>
 		</Flex>
 	);
 }

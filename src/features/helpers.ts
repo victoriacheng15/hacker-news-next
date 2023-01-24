@@ -16,21 +16,22 @@ async function getStoryIds(type: string) {
 	return res.data;
 }
 
-async function getStoryDetails(storyId: number) {
+async function getIdDetails(storyId: number) {
 	const res = await axios.get(getStoryUrl(storyId));
 	return res.data;
 }
 
-export const fetchDetails = async (
-	type: string,
-	page: number,
-	limit: number,
-) => {
-	const storyIds = await getStoryIds(type);
-	const promises = storyIds.slice(page, limit).map(getStoryDetails);
+export async function getStoryDetails(type: string, page: number, limit: number){
+	const storyIds: number[]= await getStoryIds(type);
+	const promises = storyIds.slice(page, limit).map(getIdDetails);
 
 	return await Promise.all(promises);
-};
+}
+
+export async function getStoryComments(commentIds: number[]) {
+	const promoises = commentIds.map(getIdDetails);
+	return await Promise.all(promoises);
+}
 
 export const initialState: ApiResponse = {
 	details: [],
