@@ -1,37 +1,41 @@
+import { useEffect } from "react";
+import {
+	fetchComments,
+	selectComments,
+} from "@/features/comments/commentsSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useRouter } from "next/router";
-import axios from "axios";
+import MainContainer from "@/components/MainContainer";
+import LoadingInfo from "@/components/LoadingInfo";
+import Comment from "@/components/Comment";
 
 function Comments() {
 	const router = useRouter();
-	const { id, kids } = router.query;
+	const dispatch = useAppDispatch();
 
-	console.log({ kids });
+	const { id, object } = router.query;
+	const res = JSON.parse(object as string);
+	const commentIds = res.kids;
+	const title = res.title
+
+	const { comments, status, error } = useAppSelector(selectComments);
+
+	useEffect(() => {
+		if (status === "idle") {
+			dispatch(fetchComments(commentIds));
+		}
+	}, [dispatch, status, commentIds]);
 
 	return (
-		<div>
+		<MainContainer>
 			<h1>Comments</h1>
-			<p>{id}</p>
-		</div>
+			<p>{title}</p>
+			{comments.map((comment) => (
+				<Comment key={comment.id} {...comment} />
+			))}
+			<LoadingInfo status={status} error={error} />
+		</MainContainer>
 	);
 }
 
 export default Comments;
-
-// export async function getServerSideProps() {
-// 	const router = useRouter();
-// 	const { kids } = router.query;
-// 	const promises = kids.map(async (commentId: number) => {
-// 		const res = await axios.get(
-// 			`https://hacker-news.firebaseio.com/v0/item/${commentId}.json`,
-// 		);
-// 		return res.data;
-// 	});
-
-// 	const comments = await Promise.all(promises);
-
-// 	return {
-// 		props: {
-// 			comments,
-// 		},
-// 	};
-// }
