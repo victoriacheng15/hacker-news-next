@@ -11,3 +11,9 @@ interface ApiResponse {
 type Pagination = Pick<ApiResponse, "page" | "limit">;
 
 type Details = Story[] | Job[];
+
+interface CommentsResponse {
+  comments: StoryComments[],
+  status: LoadingStatus,
+  error: boolean,
+}

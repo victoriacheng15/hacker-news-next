@@ -1,11 +1,13 @@
-interface Story {
+interface CommonProperties {
 	by: string;
 	id: number;
 	kids: number[];
-	score: number;
 	time: number;
+}
+
+interface Story extends CommonProperties {
+	score: number;
 	title: string;
-	// type: "story" | "job";
 	url: string;
 }
 
@@ -13,9 +15,11 @@ type Job = Omit<Story, "kids">;
 
 type StoryProps = Story & Job;
 
-interface MainContainerProps {
-	children: React.ReactNode;
-	status: LoadingStatus;
-	error: boolean;
-	onClick: () => void;
+interface StoryComments extends CommonProperties {
+	text: string;
+	parent: number;
 }
+
+type LoadingInfoProps = Pick<ApiResponse, "status" | "error">;
+
+type CommentProps =  Pick<StoryComments, "by" | "time" | "text" | "kids">
