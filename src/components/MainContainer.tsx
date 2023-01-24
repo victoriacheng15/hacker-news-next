@@ -1,13 +1,6 @@
 import { Flex } from "@chakra-ui/react";
-import Loading from "./Loading";
-import LoadMoreBtn from "./LoadMoreBtn";
 
-function MainContainer({
-	children,
-	status,
-	error,
-	onClick,
-}: MainContainerProps) {
+function MainContainer({ children }: { children: React.ReactNode }) {
 	return (
 		<Flex
 			as="main"
@@ -19,9 +12,6 @@ function MainContainer({
 			gap="2"
 		>
 			{children}
-			{error && <h2>something is wrong</h2>}
-			{status === "loading" && <Loading />}
-			{status === "succeeded" && <LoadMoreBtn onClick={onClick} />}
 		</Flex>
 	);
 }
