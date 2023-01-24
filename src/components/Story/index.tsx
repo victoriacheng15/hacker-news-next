@@ -1,17 +1,21 @@
 import { Flex, Text, Divider } from "@chakra-ui/react";
 import { useAppDispatch } from "@/hooks";
 import { clearComments } from "@/features/comments/commentsSlice";
-import { formatDistanceStrict, fromUnixTime } from "date-fns";
+import { timeAgo } from "../timeFormater";
 import Link from "next/link";
 import StoryTitle from "./StoryTitle";
 
 function Story({ id, title, by, kids, url, time, score }: StoryProps) {
 	const dispatch = useAppDispatch();
-	const today = new Date();
-	const timeAgo = formatDistanceStrict(fromUnixTime(time), today);
+
+
+	const obj = {
+		kids,
+		title
+	}
 
 	const query: { object: string | null } = {
-		object: encodeURIComponent(JSON.stringify(kids ?? null)),
+		object: JSON.stringify(obj),
 	};
 
 	const CommentsLink = () => {
@@ -36,7 +40,7 @@ function Story({ id, title, by, kids, url, time, score }: StoryProps) {
 			<StoryTitle title={title} url={url} />
 			<Divider />
 			<Text>
-				{score} points | by: {by} | {timeAgo} ago | <CommentsLink />
+				{score} points | by: {by} | {timeAgo(time)} ago | <CommentsLink />
 			</Text>
 		</Flex>
 	);
