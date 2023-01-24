@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { AppState } from "@/store";
-import { fetchDetails, initialState } from "../helpers";
+import { getStoryDetails, initialState } from "../helpers";
 
 export const fetchTopDetails = createAsyncThunk(
 	"tops/topsStoryDetails",
 	async ({ page, limit }: Pagination) => {
-		const details = await fetchDetails("top", page, limit);
+		const details = await getStoryDetails("top", page, limit);
 
 		return { details };
 	},
