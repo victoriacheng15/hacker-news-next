@@ -1,8 +1,7 @@
-import { formatDistanceStrict, fromUnixTime } from "date-fns";
+import { intlFormatDistance, format } from "date-fns";
 
-const today = new Date();
 
-export function timeAgo(time: number) {
-  const unixTime = fromUnixTime(time)
-	return formatDistanceStrict(unixTime, today);
+export function timeAgo(time: string) {
+  const today = new Date();
+	return intlFormatDistance(new Date(time), today);
 }
