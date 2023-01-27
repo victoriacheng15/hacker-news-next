@@ -1,7 +1,8 @@
+/* eslint-disable react/no-children-prop */
 import { useEffect } from "react";
-import { fetchTopDetails, selectTops } from "@/features/top/topsSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { loadMore } from "@/features/top/topsSlice";
+import { fetchTopDetails, selectTops } from "@/features/topsSlice";
+import { loadMore } from "@/features/topsSlice";
 import MainContainer from "@/components/MainContainer";
 import PageTitle from "@/components/PageTitle";
 import Story from "@/components/Story";
@@ -10,7 +11,6 @@ import LoadingInfo from "@/components/LoadingInfo";
 
 function top() {
 	const dispatch = useAppDispatch();
-
 	const { details, status, error, page, limit } = useAppSelector(selectTops);
 
 	useEffect(() => {
@@ -22,22 +22,25 @@ function top() {
 	return (
 		<MainContainer>
 			<PageTitle pageTitle="Top Stories" />
-			{(details as StoryProps[]).map(
-				({ id, title, by, kids, url, time, score }) => (
+			{(details as Story[]).map(
+				({ id, title, author, children, url, text, created_at, points }) => (
 					<Story
 						key={id}
 						id={id}
 						title={title}
-						by={by}
-						kids={kids}
+						author={author}
+						children={children}
 						url={url}
-						time={time}
-						score={score}
+						text={text}
+						created_at={created_at}
+						points={points}
 					/>
 				),
 			)}
 			<LoadingInfo status={status} error={error} />
-			{status === "succeeded" && <LoadMoreBtn onClick={() => dispatch(loadMore())} />}
+			{status === "succeeded" && (
+				<LoadMoreBtn onClick={() => dispatch(loadMore())} />
+			)}
 		</MainContainer>
 	);
 }

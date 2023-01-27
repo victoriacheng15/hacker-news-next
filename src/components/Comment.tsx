@@ -1,21 +1,16 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
-// import { timeAgo } from "./timeFormater";
+import { Box, Text } from "@chakra-ui/react";
+import { timeAgo } from "./timeFormater";
 
-function Comment(comment: CommentProps) {
-
-  return (
-		<Box>
+function Comment({ author, created_at, children, text }: StoryComment) {
+	// const test = orange.100;
+	return (
+		<Box as="section"bg="orange.100" p="1" pl="0">
 			<Text>
-				{comment.by || "not fetch"} | {comment.time || "time is not fetched yet"}
+				{author || "no auther"} | {timeAgo(created_at)}
 			</Text>
-			<Text>{comment.text}</Text>
-			<Heading fontSize="lg">
-				more sub comments: {comment?.kids?.map((id) => `${id}, `) || "no more comments"}
-			</Heading>
-			{comment?.kids?.map((comment) => (
-        //@ts-ignore
-				<Box key={comment.id} pl="8">
-          {/* @ts-ignore */}
+			<Text>{text}</Text>
+			{children?.map((comment) => (
+				<Box key={comment.id} pl="8" bg="orange.200">
 					<Comment {...comment} />
 				</Box>
 			))}

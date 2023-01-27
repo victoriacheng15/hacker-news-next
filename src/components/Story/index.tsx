@@ -1,17 +1,17 @@
 import { Flex, Text, Divider } from "@chakra-ui/react";
 import { useAppDispatch } from "@/hooks";
-import { clearComments } from "@/features/comments/commentsSlice";
+import { clearComments } from "@/features/commentsSlice";
 import { timeAgo } from "../timeFormater";
 import Link from "next/link";
 import StoryTitle from "./StoryTitle";
 
-function Story({ id, title, by, kids, url, time, score }: StoryProps) {
+function Story({ id, title, author, children, url, text, created_at, points }: StoryProps) {
 	const dispatch = useAppDispatch();
 
 
 	const obj = {
-		kids: kids ? kids: null,
-		title
+		id,
+		title,
 	}
 
 	const query: { object: string | null } = {
@@ -21,7 +21,7 @@ function Story({ id, title, by, kids, url, time, score }: StoryProps) {
 	const CommentsLink = () => {
 		return (
 			<Link href={{ pathname: `/top/${id}`, query }} onClick={() => dispatch(clearComments())}>
-				{kids?.length || 0} comments
+				{children?.length || 0} comments
 			</Link>
 		);
 	};
@@ -39,8 +39,9 @@ function Story({ id, title, by, kids, url, time, score }: StoryProps) {
 		>
 			<StoryTitle title={title} url={url} />
 			<Divider />
+			<Text>{text}</Text>
 			<Text>
-				{score} points | by: {by} | {timeAgo(time)} ago | <CommentsLink />
+				{points} points | by: {author} | {timeAgo(created_at)} | <CommentsLink />
 			</Text>
 		</Flex>
 	);
