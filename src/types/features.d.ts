@@ -1,6 +1,6 @@
 type LoadingStatus = "idle" | "loading" | "succeeded" | "failed";
 
-interface ApiResponse {
+interface StoryResponse {
 	details: Details;
 	status: LoadingStatus;
 	error: boolean;
@@ -8,12 +8,12 @@ interface ApiResponse {
 	limit: number;
 }
 
+interface CommentsResponse {
+	comments: StoryComment;
+	status: LoadingStatus;
+	error: boolean;
+}
+
 type Pagination = Pick<ApiResponse, "page" | "limit">;
 
 type Details = Story[] | Job[];
-
-interface CommentsResponse {
-  comments: StoryComments[],
-  status: LoadingStatus,
-  error: boolean,
-}
