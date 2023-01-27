@@ -1,7 +1,12 @@
+/* eslint-disable react/no-children-prop */
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { fetchShowDetails, selectShows } from "@/features/showsSlice";
 import { loadMore } from "@/features/showsSlice";
+import MainContainer from "@/components/MainContainer";
+import LoadMoreBtn from "@/components/LoadMoreBtn";
+import LoadingInfo from "@/components/LoadingInfo";
+import Story from "@/components/Story";
 
 function show() {
 	const dispatch = useAppDispatch();
@@ -15,18 +20,28 @@ function show() {
 	}, [dispatch, status, page, limit]);
 
 	return (
-		<>
+		<MainContainer>
 			{error && <h2>something is wrong</h2>}
-			{details.map((story, index) => (
-				<div key={story.id}>
-					{index + 1} - {story.title} by {story.author}
-				</div>
-			))}
-			{status === "loading" && <h2>loading</h2>}
-			<button type="button" onClick={() => dispatch(loadMore())}>
-				Load more
-			</button>
-		</>
+			{(details as Story[]).map(
+				({ id, title, author, children, url, text, created_at, points }) => (
+					<Story
+						key={id}
+						id={id}
+						title={title}
+						author={author}
+						children={children}
+						url={url}
+						text={text}
+						created_at={created_at}
+						points={points}
+					/>
+				),
+			)}
+			<LoadingInfo status={status} error={error} />
+			{status === "succeeded" && (
+				<LoadMoreBtn onClick={() => dispatch(loadMore())} />
+			)}
+		</MainContainer>
 	);
 }
 
