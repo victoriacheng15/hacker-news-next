@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { fetchJobDetails, selectJobs } from "@/features/job/jobsSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { loadMore } from "@/features/job/jobsSlice";
+import { fetchJobDetails, selectJobs } from "@/features/jobsSlice";
+import { loadMore } from "@/features/jobsSlice";
 
 function job() {
 	const dispatch = useAppDispatch();
@@ -19,7 +19,7 @@ function job() {
 			{error && <h2>something is wrong</h2>}
 			{details.map((story, index) => (
 				<div key={story.id}>
-					{index + 1} - {story.title} by {story.by}
+					{index + 1} - {story.title} by {story.author}
 				</div>
 			))}
 			{status === "loading" && <h2>loading</h2>}

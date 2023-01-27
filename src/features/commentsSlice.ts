@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { AppState } from "@/store";
-import { getStoryComments } from "../helpers";
+import { getStoryComments } from "./helpers";
 
 export const fetchComments = createAsyncThunk(
-	"tops/storyComments",
-	async (commentIds: number[]) => {
-		const storyComments = await getStoryComments(commentIds);
+	"storyComments/comments",
+	async (id: number) => {
+		const storyComments = await getStoryComments(id);
 
 		return { storyComments };
 	},
@@ -22,8 +22,9 @@ const commentsSlice = createSlice({
 	initialState,
 	reducers: {
 		clearComments: (state) => {
-			state.status = "idle"
 			state.comments = [];
+			state.status = "idle";
+			state.error = false
 		},
 	},
 	extraReducers: (builder) => {

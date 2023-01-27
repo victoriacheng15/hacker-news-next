@@ -1,25 +1,28 @@
-interface CommonProperties {
-	by: string;
+interface Story {
 	id: number;
-	kids: number[];
-	time: number;
-}
-
-interface Story extends CommonProperties {
-	score: number;
+	created_at: string;
+	author: string;
 	title: string;
 	url: string;
-}
-
-type Job = Omit<Story, "kids">;
-
-type StoryProps = Story & Job;
-
-interface StoryComments extends CommonProperties {
 	text: string;
-	parent: number;
+	points: number;
+	children: StoryComment[] | null
 }
+
+interface StoryComment {
+	map(arg0: (comment: StoryComment) => JSX.Element): React.ReactNode;
+	id: number;
+	created_at: string;
+	author: string;
+	text: string;
+	children: StoryComment[] | null
+}
+
+
+type Job = Omit<Story, "children">;
+
+type StoryProps = Story;
 
 type LoadingInfoProps = Pick<ApiResponse, "status" | "error">;
 
-type CommentProps =  Pick<StoryComments, "by" | "time" | "text" | "kids">
+type CommentProps =  Pick<StoryComments, "author" | "time" | "text" | "children" | "create_at">
