@@ -16,7 +16,7 @@ const jobsSlice = createSlice({
 	reducers: {
 		loadMore: (state) => {
 			state.status = "idle";
-			state.limit += 20;
+			state.limit += 10;
 		},
 	},
 	extraReducers: (builder) => {
