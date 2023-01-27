@@ -1,42 +1,34 @@
 import axios from "axios";
 
 const BASE_URL = "https://hacker-news.firebaseio.com/v0";
-const ITEM_URL = `${BASE_URL}/item/`;
+const ITEM_URL = "http://hn.algolia.com/api/v1/items/";
 
-function getType(type: string) {
+function getStoryType(type: string) {
 	return `${BASE_URL}/${type}stories.json`;
 }
 
-function getStoryUrl(storyId: number) {
-	return `${ITEM_URL}${storyId}.json`;
+async function getIdDetails(id: number) {
+	const res = await axios.get(`${ITEM_URL}${id}`);
+	return res.data
 }
 
-async function getStoryIds(type: string) {
-	const res = await axios.get(getType(type));
-	return res.data;
-}
+export async function getAllDetails(type: string, page: number, limit: number) {
+	const res = await axios.get(getStoryType(type));
+	const details = res.data;
 
-async function getIdDetails(storyId: number) {
-	const res = await axios.get(getStoryUrl(storyId));
-	return res.data;
-}
-
-export async function getStoryDetails(type: string, page: number, limit: number){
-	const storyIds: number[]= await getStoryIds(type);
-	const promises = storyIds.slice(page, limit).map(getIdDetails);
-
+	const promises = details.slice(page, limit).map(getIdDetails);
 	return await Promise.all(promises);
 }
 
-export async function getStoryComments(commentIds: number[]) {
-	const promoises = commentIds.map(getIdDetails);
-	return await Promise.all(promoises);
+export async function getStoryComments(id: number) {
+	const res = await axios.get(`${ITEM_URL}${id}`);
+	return res.data.children
 }
 
-export const initialState: ApiResponse = {
+export const initialState: StoryResponse = {
 	details: [],
 	status: "idle",
 	error: false,
 	page: 0,
-	limit: 20,
+	limit: 10,
 };
