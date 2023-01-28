@@ -9,11 +9,11 @@ interface StoryResponse {
 }
 
 interface CommentsResponse {
-	comments: StoryComment;
+	comments: StoryComment[];
 	status: LoadingStatus;
 	error: boolean;
 }
 
 type Pagination = Pick<ApiResponse, "page" | "limit">;
 
-type Details = Story[] | Job[];
+type Details = Story[];

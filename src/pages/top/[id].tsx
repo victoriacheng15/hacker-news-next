@@ -6,13 +6,14 @@ import { useRouter } from "next/router";
 import MainContainer from "@/components/MainContainer";
 import LoadingInfo from "@/components/LoadingInfo";
 import Comment from "@/components/Comment";
+import StoryTitle from "@/components/Story/StoryTitle";
 
 function Comments() {
 	const [router, dispatch] = [useRouter(), useAppDispatch()];
 
 	const { object } = router.query;
 	const res = JSON.parse(object as string);
-	const [id, title] = [res.id, res.title];
+	const [id, title, url] = [res.id, res.title, res.url];
 
 	const { comments, status, error } = useAppSelector(selectComments);
 
@@ -24,10 +25,11 @@ function Comments() {
 
 	return (
 		<MainContainer>
-			<Heading fontSize="2xl">{title}</Heading>
-			{comments?.map((comment) => (
-				<Comment key={comment.text} {...comment} />
-			))}
+			<StoryTitle title={title} url={url} />
+			{comments?.map(
+				(comment) =>
+					comment.author && <Comment key={comment.text} {...comment} />,
+			)}
 			<LoadingInfo status={status} error={error} />
 		</MainContainer>
 	);

@@ -9,7 +9,7 @@ function getStoryType(type: string) {
 
 async function getIdDetails(id: number) {
 	const res = await axios.get(`${ITEM_URL}${id}`);
-	return res.data
+	return res.data;
 }
 
 export async function getAllDetails(type: string, page: number, limit: number) {
@@ -22,7 +22,7 @@ export async function getAllDetails(type: string, page: number, limit: number) {
 
 export async function getStoryComments(id: number) {
 	const res = await axios.get(`${ITEM_URL}${id}`);
-	return res.data.children
+	return res.data.children;
 }
 
 export const initialState: StoryResponse = {

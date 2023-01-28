@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { AppState } from "@/store";
 import { getStoryComments } from "./helpers";
+import axios from "axios";
 
 export const fetchComments = createAsyncThunk(
 	"storyComments/comments",
 	async (id: number) => {
 		const storyComments = await getStoryComments(id);
-
 		return { storyComments };
 	},
 );
@@ -24,7 +24,7 @@ const commentsSlice = createSlice({
 		clearComments: (state) => {
 			state.comments = [];
 			state.status = "idle";
-			state.error = false
+			state.error = false;
 		},
 	},
 	extraReducers: (builder) => {
