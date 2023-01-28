@@ -6,7 +6,7 @@ interface Story {
 	url: string;
 	text: string;
 	points: number;
-	children: StoryComment[] | null
+	children: StoryComment[] | null;
 }
 
 interface StoryComment {
@@ -14,10 +14,9 @@ interface StoryComment {
 	created_at: string;
 	author: string;
 	text: string;
-	children: StoryComment[] | null
+	children: StoryComment[] | null;
 	map(arg0: (comment: StoryComment) => JSX.Element): React.ReactNode;
 }
-
 
 type Job = Omit<Story, "children">;
 
@@ -25,4 +24,7 @@ type StoryProps = Story;
 
 type LoadingInfoProps = Pick<ApiResponse, "status" | "error">;
 
-type CommentProps =  Pick<StoryComments, "author" | "time" | "text" | "children" | "create_at">
+type CommentProps = Pick<
+	StoryComments,
+	"author" | "time" | "text" | "children" | "create_at"
+>;

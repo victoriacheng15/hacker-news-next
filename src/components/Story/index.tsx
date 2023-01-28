@@ -5,14 +5,23 @@ import { timeAgo } from "../timeFormater";
 import Link from "next/link";
 import StoryTitle from "./StoryTitle";
 
-function Story({ id, title, author, children, url, text, created_at, points }: StoryProps) {
+function Story({
+	id,
+	title,
+	author,
+	children,
+	url,
+	text,
+	created_at,
+	points,
+}: StoryProps) {
 	const dispatch = useAppDispatch();
 
 	const obj = {
 		id,
 		title,
 		url,
-	}
+	};
 
 	const query: { object: string | null } = {
 		object: JSON.stringify(obj),
@@ -20,7 +29,10 @@ function Story({ id, title, author, children, url, text, created_at, points }: S
 
 	const CommentsLink = () => {
 		return (
-			<Link href={{ pathname: `/top/${id}`, query }} onClick={() => dispatch(clearComments())}>
+			<Link
+				href={{ pathname: `/top/${id}`, query }}
+				onClick={() => dispatch(clearComments())}
+			>
 				{children?.length || 0} comments
 			</Link>
 		);
@@ -39,9 +51,14 @@ function Story({ id, title, author, children, url, text, created_at, points }: S
 		>
 			<StoryTitle title={title} url={url} />
 			<Divider />
-			<Text dangerouslySetInnerHTML={{__html: text ? `${text.slice(0, 300)}...` : ""}}></Text>
+			<Text
+				dangerouslySetInnerHTML={{
+					__html: text ? `${text.slice(0, 300)}...` : "",
+				}}
+			></Text>
 			<Text>
-				{points} points | by: {author} | {timeAgo(created_at)} | <CommentsLink />
+				{points} points | by: {author} | {timeAgo(created_at)} |{" "}
+				<CommentsLink />
 			</Text>
 		</Flex>
 	);

@@ -26,9 +26,10 @@ function Comments() {
 	return (
 		<MainContainer>
 			<StoryTitle title={title} url={url} />
-			{comments?.map((comment) => (
-				comment.author && <Comment key={comment.text} {...comment} />
-			))}
+			{comments?.map(
+				(comment) =>
+					comment.author && <Comment key={comment.text} {...comment} />,
+			)}
 			<LoadingInfo status={status} error={error} />
 		</MainContainer>
 	);
