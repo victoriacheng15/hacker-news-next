@@ -10,12 +10,12 @@ interface Story {
 }
 
 interface StoryComment {
-	map(arg0: (comment: StoryComment) => JSX.Element): React.ReactNode;
 	id: number;
 	created_at: string;
 	author: string;
 	text: string;
 	children: StoryComment[] | null
+	map(arg0: (comment: StoryComment) => JSX.Element): React.ReactNode;
 }
 
 
