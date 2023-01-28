@@ -8,10 +8,10 @@ import StoryTitle from "./StoryTitle";
 function Story({ id, title, author, children, url, text, created_at, points }: StoryProps) {
 	const dispatch = useAppDispatch();
 
-
 	const obj = {
 		id,
 		title,
+		url,
 	}
 
 	const query: { object: string | null } = {
@@ -39,7 +39,7 @@ function Story({ id, title, author, children, url, text, created_at, points }: S
 		>
 			<StoryTitle title={title} url={url} />
 			<Divider />
-			<Text>{text}</Text>
+			<Text dangerouslySetInnerHTML={{__html: text ? `${text.slice(0, 300)}...` : ""}}></Text>
 			<Text>
 				{points} points | by: {author} | {timeAgo(created_at)} | <CommentsLink />
 			</Text>
