@@ -1,16 +1,16 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Divider, Text } from "@chakra-ui/react";
 import { timeAgo } from "./timeFormater";
 
 function Comment({ author, created_at, children, text }: StoryComment) {
-	// const test = orange.100;
+
 	return (
-		<Box as="section"bg="orange.100" p="1" pl="0">
-			<Text>
+		<Box as="section" bg="orange.100" p="2">
+			<Text p="1" textDecoration="underline">
 				{author || "no auther"} | {timeAgo(created_at)}
 			</Text>
-			<Text>{text}</Text>
+			<Text fontSize="lg" fontWeight="medium" p="1" dangerouslySetInnerHTML={{ __html: text }}></Text>
 			{children?.map((comment) => (
-				<Box key={comment.id} pl="8" bg="orange.200">
+				<Box key={comment.id} pl="4">
 					<Comment {...comment} />
 				</Box>
 			))}
