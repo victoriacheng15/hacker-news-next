@@ -1,19 +1,21 @@
+import { IItem } from "hacker-news-api-types";
+
 type LoadingStatus = "idle" | "loading" | "succeeded" | "failed";
 
 interface StoryResponse {
-	details: Details;
-	status: LoadingStatus;
-	error: boolean;
+	details: IItem[];
+	loadingStatus: LoadingStatus;
+	error: string;
 	page: number;
 	limit: number;
 }
 
 interface CommentsResponse {
-	comments: StoryComment[];
-	status: LoadingStatus;
-	error: boolean;
+	comments: {
+		[id: number]: Comments[];
+	};
+	loadingStatus: LoadingStatus;
+	error: string;
 }
 
 type Pagination = Pick<ApiResponse, "page" | "limit">;
-
-type Details = Story[];

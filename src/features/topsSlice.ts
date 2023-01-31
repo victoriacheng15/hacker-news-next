@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { AppState } from "@/store";
 import { getAllDetails, initialState } from "./helpers";
+import { Pagination } from "@/types/features";
 
-export const fetchTopDetails = createAsyncThunk(
+export const fetchTopStories = createAsyncThunk(
 	"tops/topsStoryDetails",
 	async ({ page, limit }: Pagination) => {
 		const details = await getAllDetails("top", page, limit);
-		return { details };
+		return details
 	},
 );
 
@@ -14,28 +15,28 @@ const topsSlice = createSlice({
 	name: "tops",
 	initialState,
 	reducers: {
-		loadMore: (state) => {
-			state.status = "idle";
-			state.limit += 10;
-		},
+		loadMoreStories: (state) => {
+			state.loadingStatus = "idle"
+			state.limit += 10
+		}
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(fetchTopDetails.pending, (state) => {
-				state.status = "loading";
+			.addCase(fetchTopStories.pending, (state) => {
+				state.loadingStatus = "loading";
 			})
-			.addCase(fetchTopDetails.fulfilled, (state, action) => {
-				state.status = "succeeded";
-				state.details = [...action.payload.details];
+			.addCase(fetchTopStories.fulfilled, (state, action) => {
+				state.loadingStatus = "succeeded";
+				state.details = [...action.payload]
 			})
-			.addCase(fetchTopDetails.rejected, (state) => {
-				state.status = "failed";
-				state.error = true;
-			});
+			.addCase(fetchTopStories.rejected, (state, action) => {
+				state.loadingStatus = "failed";
+				state.error = action.error.message!;
+			})
 	},
 });
 
-export const { loadMore } = topsSlice.actions;
+export const { loadMoreStories } = topsSlice.actions;
 
 export const selectTops = (state: AppState) => state.tops;
 

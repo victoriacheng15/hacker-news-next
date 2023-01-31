@@ -1,46 +1,50 @@
 /* eslint-disable react/no-children-prop */
 import { useEffect } from "react";
+import Link from "next/link";
+import { Flex } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { fetchTopDetails, selectTops } from "@/features/topsSlice";
-import { loadMore } from "@/features/topsSlice";
+import { fetchTopStories, selectTops } from "@/features/topsSlice";
+import { loadMoreStories } from "@/features/topsSlice";
+import { slug } from "@/features/helpers";
 import MainContainer from "@/components/MainContainer";
 import PageTitle from "@/components/PageTitle";
-import Story from "@/components/Story";
+import StoryBlock from "@/components/StoryBlock";
 import LoadMoreBtn from "@/components/LoadMoreBtn";
 import LoadingInfo from "@/components/LoadingInfo";
 
 function top() {
 	const dispatch = useAppDispatch();
-	const { details, status, error, page, limit } = useAppSelector(selectTops);
+	const { details, loadingStatus, error, page, limit } =
+		useAppSelector(selectTops);
 
 	useEffect(() => {
-		if (status === "idle") {
-			dispatch(fetchTopDetails({ page, limit }));
+		if (loadingStatus === "idle") {
+			dispatch(fetchTopStories({ page, limit }));
 		}
-	}, [dispatch, status, page, limit]);
+	}, [dispatch, loadingStatus, page, limit]);
 
 	return (
 		<MainContainer>
 			<PageTitle pageTitle="Top Stories" />
-			{(details as Story[]).map(
-				({ id, title, author, children, url, text, created_at, points }) => (
-					<Story
-						key={id}
-						id={id}
-						title={title}
-						author={author}
-						children={children}
-						url={url}
-						text={text}
-						created_at={created_at}
-						points={points}
-					/>
-				),
-			)}
-			<LoadingInfo status={status} error={error} />
-			{status === "succeeded" && (
-				<LoadMoreBtn onClick={() => dispatch(loadMore())} />
-			)}
+			<Flex flexDir="column" gap="4">
+				{details.map((detail) => (
+					<Link
+						key={detail.id}
+						href={`/top/${detail.id}?title=${slug(detail.title)}`}
+					>
+						<StoryBlock
+							id={detail.id}
+							title={detail.title}
+							by={detail.by}
+							time={detail.time}
+							score={detail.score}
+							descendants={detail.descendants}
+						/>
+					</Link>
+				))}
+			</Flex>
+			<LoadingInfo status={loadingStatus} error={error} />
+			<LoadMoreBtn onClick={() => dispatch(loadMoreStories())} />
 		</MainContainer>
 	);
 }
