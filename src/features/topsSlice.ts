@@ -1,13 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { AppState } from "@/store";
-import { getAllDetails, initialState } from "./helpers";
+import { getAllDetails, initialState } from "../utils/helpers";
 import { Pagination } from "@/types/features";
+import { ITEM_URL } from "@/utils/helpers";
+import axios from "axios";
 
 export const fetchTopStories = createAsyncThunk(
 	"tops/topsStoryDetails",
 	async ({ page, limit }: Pagination) => {
 		const details = await getAllDetails("top", page, limit);
-		return details
+		return details;
+	},
+);
+
+export const fetchTopComments = createAsyncThunk(
+	"tops/storyComments",
+	async (storyId: number) => {
+		const res = await axios.get(`${ITEM_URL}${storyId}`);
+		const comments = res.data;
+		return { storyId, comments };
 	},
 );
 
@@ -16,8 +27,12 @@ const topsSlice = createSlice({
 	initialState,
 	reducers: {
 		loadMoreStories: (state) => {
-			state.loadingStatus = "idle"
-			state.limit += 10
+			state.loadingStatus = "idle";
+			state.limit += 10;
+		},
+		loadMoreComments: (state) => {
+			state.commentLimit += 10
+			state.error = ""
 		}
 	},
 	extraReducers: (builder) => {
@@ -27,16 +42,27 @@ const topsSlice = createSlice({
 			})
 			.addCase(fetchTopStories.fulfilled, (state, action) => {
 				state.loadingStatus = "succeeded";
-				state.details = [...action.payload]
+				state.details = [...action.payload];
 			})
 			.addCase(fetchTopStories.rejected, (state, action) => {
 				state.loadingStatus = "failed";
 				state.error = action.error.message!;
 			})
+			.addCase(fetchTopComments.pending, (state) => {
+				state.commentLoadng = true;
+			})
+			.addCase(fetchTopComments.fulfilled, (state, action) => {
+				state.commentLoadng = false;
+				state.comments[action.payload.storyId] = action.payload.comments;
+			})
+			.addCase(fetchTopComments.rejected, (state, action) => {
+				state.commentLoadng = false;
+				state.error = action.error.message!;
+			});
 	},
 });
 
-export const { loadMoreStories } = topsSlice.actions;
+export const { loadMoreStories, loadMoreComments } = topsSlice.actions;
 
 export const selectTops = (state: AppState) => state.tops;
 

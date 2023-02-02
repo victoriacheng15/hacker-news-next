@@ -37,5 +37,10 @@ export const initialState: StoryResponse = {
 	loadingStatus: "idle",
 	error: "",
 	page: 0,
-	limit: 10,
+	limit: 20,
+	comments: {},
+	commentLoadng: false,
+	commentError: "",
+	commentPage: 0,
+	commentLimit: 20,
 };
