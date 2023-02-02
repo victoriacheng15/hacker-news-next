@@ -1,6 +1,6 @@
 import { Flex, Text, Divider, Heading } from "@chakra-ui/react";
 import { IItem } from "hacker-news-api-types";
-import { timeAgo } from "../timeFormater";
+import { timeAgo } from "@/utils/timeFormater";
 
 function StoryBlock({ title, by, time, score, descendants }: IItem) {
 	return (
