@@ -8,14 +8,23 @@ interface StoryResponse {
 	error: string;
 	page: number;
 	limit: number;
+	comments: {
+		[id: number]: Comments;
+	};
+	commentLoadng: boolean;
+	commentError: string;
+	commentPage: number;
+	commentLimit: number;
 }
 
-interface CommentsResponse {
-	comments: {
-		[id: number]: Comments[];
-	};
-	loadingStatus: LoadingStatus;
-	error: string;
+interface Comments {
+	id: number;
+	title: string;
+	url: string;
+	author: string;
+	created_at_i: number;
+	text: string;
+	children: Comments[]
 }
 
 type Pagination = Pick<ApiResponse, "page" | "limit">;
