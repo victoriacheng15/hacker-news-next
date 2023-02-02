@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { Flex } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { fetchTopStories, selectTops } from "@/features/topsSlice";
+import { fetchTopStories, selectTops, fetchTopComments } from "@/features/topsSlice";
 import { loadMoreStories } from "@/features/topsSlice";
-import { slug } from "@/features/helpers";
+import { slug } from "@/utils/helpers";
 import MainContainer from "@/components/MainContainer";
 import PageTitle from "@/components/PageTitle";
 import StoryBlock from "@/components/StoryBlock";
@@ -29,8 +29,10 @@ function top() {
 			<Flex flexDir="column" gap="4">
 				{details.map((detail) => (
 					<Link
+						data-id={detail.id}
 						key={detail.id}
 						href={`/top/${detail.id}?title=${slug(detail.title)}`}
+						onClick={() => dispatch(fetchTopComments(detail.id))}
 					>
 						<StoryBlock
 							id={detail.id}
