@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-function LoadMoreBtn({ onClick }: { onClick: () => void }) {
+function LoadMoreBtn({ btnText, onClick }: { btnText: string, onClick: () => void }) {
 	return (
 		<Button
 			size="lg"
@@ -10,7 +10,7 @@ function LoadMoreBtn({ onClick }: { onClick: () => void }) {
 			mt="4"
 			onClick={onClick}
 		>
-			Load More Stories!
+			{btnText}
 		</Button>
 	);
 }
