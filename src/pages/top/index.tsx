@@ -1,11 +1,9 @@
 /* eslint-disable react/no-children-prop */
 import { useEffect } from "react";
-import Link from "next/link";
 import { Flex } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { fetchTopStories, selectTops, fetchTopComments } from "@/features/topsSlice";
+import { fetchTopStories, selectTops } from "@/features/topsSlice";
 import { loadMoreStories } from "@/features/topsSlice";
-import { slug } from "@/utils/helpers";
 import MainContainer from "@/components/MainContainer";
 import PageTitle from "@/components/PageTitle";
 import StoryBlock from "@/components/StoryBlock";
@@ -28,25 +26,22 @@ function top() {
 			<PageTitle pageTitle="Top Stories" />
 			<Flex flexDir="column" gap="4">
 				{details.map((detail) => (
-					<Link
-						data-id={detail.id}
+					<StoryBlock
 						key={detail.id}
-						href={`/top/${detail.id}?title=${slug(detail.title)}`}
-						onClick={() => dispatch(fetchTopComments(detail.id))}
-					>
-						<StoryBlock
-							id={detail.id}
-							title={detail.title}
-							by={detail.by}
-							time={detail.time}
-							score={detail.score}
-							descendants={detail.descendants}
-						/>
-					</Link>
+						id={detail.id}
+						title={detail.title}
+						by={detail.by}
+						time={detail.time}
+						score={detail.score}
+						descendants={detail.descendants}
+					/>
 				))}
 			</Flex>
 			<LoadingInfo status={loadingStatus} error={error} />
-			<LoadMoreBtn onClick={() => dispatch(loadMoreStories())} />
+			<LoadMoreBtn
+				btnText="Load More Stories!"
+				onClick={() => dispatch(loadMoreStories())}
+			/>
 		</MainContainer>
 	);
 }
