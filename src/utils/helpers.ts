@@ -39,7 +39,7 @@ export const initialState: StoryResponse = {
 	page: 0,
 	limit: 20,
 	comments: {},
-	commentLoadng: false,
+	commentLoading: false,
 	commentError: "",
 	commentPage: 0,
 	commentLimit: 20,
