@@ -31,9 +31,9 @@ const topsSlice = createSlice({
 			state.limit += 10;
 		},
 		loadMoreComments: (state) => {
-			state.commentLimit += 10
-			state.error = ""
-		}
+			state.commentLimit += 10;
+			state.error = "";
+		},
 	},
 	extraReducers: (builder) => {
 		builder

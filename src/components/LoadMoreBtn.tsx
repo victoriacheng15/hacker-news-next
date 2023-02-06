@@ -1,6 +1,9 @@
 import { Button } from "@chakra-ui/react";
 
-function LoadMoreBtn({ btnText, onClick }: { btnText: string, onClick: () => void }) {
+function LoadMoreBtn({
+	btnText,
+	onClick,
+}: { btnText: string; onClick: () => void }) {
 	return (
 		<Button
 			size="lg"

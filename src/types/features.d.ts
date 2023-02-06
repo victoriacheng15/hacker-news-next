@@ -24,7 +24,7 @@ interface Comments {
 	author: string;
 	created_at_i: number;
 	text: string;
-	children: Comments[]
+	children: Comments[];
 }
 
 type Pagination = Pick<ApiResponse, "page" | "limit">;

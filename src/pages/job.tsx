@@ -17,7 +17,7 @@ function job() {
 
 	return (
 		<MainContainer>
-      <h2>job story</h2>
+			<h2>job story</h2>
 			{/* {error && <h2>something is wrong</h2>}
 			{details.map((story, index) => (
 				<div key={story.id}>

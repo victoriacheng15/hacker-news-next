@@ -38,7 +38,10 @@ function top() {
 				))}
 			</Flex>
 			<LoadingInfo status={loadingStatus} error={error} />
-			<LoadMoreBtn btnText="Load More Stories!" onClick={() => dispatch(loadMoreStories())} />
+			<LoadMoreBtn
+				btnText="Load More Stories!"
+				onClick={() => dispatch(loadMoreStories())}
+			/>
 		</MainContainer>
 	);
 }

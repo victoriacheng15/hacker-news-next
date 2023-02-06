@@ -21,7 +21,7 @@ function show() {
 
 	return (
 		<MainContainer>
-      <h2>Show stories</h2>
+			<h2>Show stories</h2>
 			{/* {error && <h2>something is wrong</h2>}
 			{(details as Story[]).map(
 				({ id, title, author, children, url, text, created_at, points }) => (

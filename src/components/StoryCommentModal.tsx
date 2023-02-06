@@ -19,13 +19,8 @@ import LoadMoreBtn from "./LoadMoreBtn";
 function StoryCommentModal({ id }: { id: number }) {
 	const dispatch = useAppDispatch();
 
-	const {
-		details,
-		comments,
-		commentLoading,
-		commentPage,
-		commentLimit,
-	} = useAppSelector(selectTops);
+	const { details, comments, commentLoading, commentPage, commentLimit } =
+		useAppSelector(selectTops);
 
 	const currentStory: any = details.find(({ id }) => id === id);
 	const currentComment = comments[id];
