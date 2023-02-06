@@ -11,7 +11,7 @@ interface StoryResponse {
 	comments: {
 		[id: number]: Comments;
 	};
-	commentLoadng: boolean;
+	commentLoading: boolean;
 	commentError: string;
 	commentPage: number;
 	commentLimit: number;
