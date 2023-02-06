@@ -49,14 +49,14 @@ const topsSlice = createSlice({
 				state.error = action.error.message!;
 			})
 			.addCase(fetchTopComments.pending, (state) => {
-				state.commentLoadng = true;
+				state.commentLoading = true;
 			})
 			.addCase(fetchTopComments.fulfilled, (state, action) => {
-				state.commentLoadng = false;
+				state.commentLoading = false;
 				state.comments[action.payload.storyId] = action.payload.comments;
 			})
 			.addCase(fetchTopComments.rejected, (state, action) => {
-				state.commentLoadng = false;
+				state.commentLoading = false;
 				state.error = action.error.message!;
 			});
 	},
