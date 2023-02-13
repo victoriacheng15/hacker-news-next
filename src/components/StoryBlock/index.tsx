@@ -43,7 +43,7 @@ function StoryBlock({ title, by, time, score, descendants, id }: IItem) {
 			<Flex>
 				<Text fontSize={["sm", "md", "lg"]} display="flex">
 					{score} points | by: {by} | Published {timeAgo(time as number)} ago |{" "}
-					{descendants} comments
+					{descendants ? `${descendants} comments` : "No comments yet"}
 				</Text>
 			</Flex>
 			<Modal
