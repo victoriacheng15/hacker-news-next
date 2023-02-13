@@ -23,13 +23,9 @@ export async function getAllDetails(type: string, page: number, limit: number) {
 	return await Promise.all(promises);
 }
 
-export async function getStoryComments(id: number) {
-	const res = await axios.get(`${ITEM_URL}${id}`);
-	return res.data.children;
-}
-
-export function slug(title: string | undefined) {
-	return title?.toLowerCase().replace(/\s+/g, "-");
+export async function getStoryComments(storyId: number) {
+	const res = await axios.get(`${ITEM_URL}${storyId}`);
+	return res.data;
 }
 
 export const initialState: StoryResponse = {
