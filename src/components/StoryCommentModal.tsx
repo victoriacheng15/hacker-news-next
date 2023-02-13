@@ -17,20 +17,26 @@ import LoadMoreBtn from "./LoadMoreBtn";
 function StoryCommentModal({ id }: { id: number }) {
 	const dispatch = useAppDispatch();
 
-	const { details, comments, commentLoading, commentPage, commentLimit } =
+	const { comments, commentLoading, commentPage, commentLimit } =
 		useAppSelector(selectTops);
-
-	const currentStory: any = details.find(({ id }) => id === id);
 	const currentComment = comments[id];
+
+	if (commentLoading) {
+		return (
+			<ModalContent>
+				<Loading />
+			</ModalContent>
+		);
+	}
 
 	return (
 		<ModalContent>
 			<ModalHeader>
-				<StoryTitle title={currentStory.title} url={currentStory.url} />
+				<StoryTitle title={currentComment.title} url={currentComment.url} />
 				<Text
 					fontSize="lg"
 					lineHeight="1.75"
-					dangerouslySetInnerHTML={{ __html: currentStory.text }}
+					dangerouslySetInnerHTML={{ __html: currentComment.text }}
 				/>
 				<Divider mt="4" />
 			</ModalHeader>
@@ -42,10 +48,12 @@ function StoryCommentModal({ id }: { id: number }) {
 						<CommentBlock key={comment.id} {...comment} />
 					))}
 				{commentLoading && <Loading />}
-				<LoadMoreBtn
-					btnText="Load More comments"
-					onClick={() => dispatch(loadMoreComments())}
-				/>
+				{currentComment?.children.length > commentLimit && (
+					<LoadMoreBtn
+						btnText="Load More comments"
+						onClick={() => dispatch(loadMoreComments())}
+					/>
+				)}
 			</ModalBody>
 		</ModalContent>
 	);
