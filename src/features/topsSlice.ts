@@ -50,6 +50,7 @@ const topsSlice = createSlice({
 			})
 			.addCase(fetchTopComments.pending, (state) => {
 				state.commentLoading = true;
+				state.commentLimit = 10;
 			})
 			.addCase(fetchTopComments.fulfilled, (state, action) => {
 				state.commentLoading = false;
