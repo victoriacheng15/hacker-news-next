@@ -5,15 +5,13 @@ import {
 	ModalBody,
 	Text,
 	Divider,
-	Button,
 } from "@chakra-ui/react";
-import { useAppSelector } from "@/hooks";
+import { useAppSelector, useAppDispatch } from "@/hooks";
 import { selectTops } from "@/features/topsSlice";
+import { loadMoreComments } from "@/features/topsSlice";
 import CommentBlock from "./CommentBlock";
 import Loading from "./LoadingInfo/Loading";
 import StoryTitle from "./StoryBlock/StoryTitle";
-import { useAppDispatch } from "@/hooks";
-import { loadMoreComments } from "@/features/topsSlice";
 import LoadMoreBtn from "./LoadMoreBtn";
 
 function StoryCommentModal({ id }: { id: number }) {
