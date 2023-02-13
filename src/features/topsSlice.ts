@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { AppState } from "@/store";
-import { getAllDetails, initialState } from "../utils/helpers";
+import {
+	getAllDetails,
+	initialState,
+	getStoryComments,
+} from "../utils/helpers";
 import { Pagination } from "@/types/features";
-import { ITEM_URL } from "@/utils/helpers";
-import axios from "axios";
 
 export const fetchTopStories = createAsyncThunk(
 	"tops/topsStoryDetails",
@@ -16,8 +18,7 @@ export const fetchTopStories = createAsyncThunk(
 export const fetchTopComments = createAsyncThunk(
 	"tops/storyComments",
 	async (storyId: number) => {
-		const res = await axios.get(`${ITEM_URL}${storyId}`);
-		const comments = res.data;
+		const comments = await getStoryComments(storyId);
 		return { storyId, comments };
 	},
 );
