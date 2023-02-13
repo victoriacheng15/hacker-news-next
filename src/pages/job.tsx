@@ -1,35 +1,49 @@
+// /* eslint-disable react/no-children-prop */
 import { useEffect } from "react";
+import { Flex } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/hooks";
+import { fetchJobStories, selectJobs } from "@/features/jobsSlice";
+import { loadMoreStories } from "@/features/jobsSlice";
 import MainContainer from "@/components/MainContainer";
-// import { fetchJobDetails, selectJobs } from "@/features/jobsSlice";
-// import { loadMore } from "@/features/jobsSlice";
+import PageTitle from "@/components/PageTitle";
+import StoryBlock from "@/components/StoryBlock";
+import LoadMoreBtn from "@/components/LoadMoreBtn";
+import LoadingInfo from "@/components/LoadingInfo";
 
-function job() {
+function show() {
 	const dispatch = useAppDispatch();
+	const { details, loadingStatus, error, page, limit } =
+		useAppSelector(selectJobs);
 
-	// const { details, status, error, page, limit } = useAppSelector(selectJobs);
-
-	// useEffect(() => {
-	// 	if (status === "idle") {
-	// 		dispatch(fetchJobDetails({ page, limit }));
-	// 	}
-	// }, [dispatch, status, page, limit]);
+	useEffect(() => {
+		if (loadingStatus === "idle") {
+			dispatch(fetchJobStories({ page, limit }));
+		}
+	}, [dispatch, loadingStatus, page, limit]);
 
 	return (
 		<MainContainer>
-			<h2>job story</h2>
-			{/* {error && <h2>something is wrong</h2>}
-			{details.map((story, index) => (
-				<div key={story.id}>
-					{index + 1} - {story.title} by {story.author}
-				</div>
-			))}
-			{status === "loading" && <h2>loading</h2>}
-			<button type="button" onClick={() => dispatch(loadMore())}>
-				Load more
-			</button> */}
+			<PageTitle pageTitle="Job Stories" />
+			<Flex flexDir="column" gap="6">
+				{details.map((detail) => (
+					<StoryBlock
+						key={detail.id}
+						id={detail.id}
+						title={detail.title}
+						by={detail.by}
+						time={detail.time}
+						score={detail.score}
+						descendants={detail.descendants}
+					/>
+				))}
+			</Flex>
+			<LoadingInfo status={loadingStatus} error={error} />
+			<LoadMoreBtn
+				btnText="Load More Stories!"
+				onClick={() => dispatch(loadMoreStories())}
+			/>
 		</MainContainer>
 	);
 }
 
-export default job;
+export default show;
