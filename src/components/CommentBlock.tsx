@@ -7,9 +7,10 @@ type CommentBlockProps = Pick<
 >;
 
 function CommentBlock(comment: CommentBlockProps) {
+
 	return (
 		<>
-			{comment.author && (
+			{!/dead|flagged/.test(comment.text) && comment.author && (
 				<Box py="2" px="4" boxShadow="lg" bg="gray.50">
 					<Text pb="1" mb="2" borderBottom="1px">
 						{comment.author} | Published {timeAgo(comment.created_at_i)} ago
