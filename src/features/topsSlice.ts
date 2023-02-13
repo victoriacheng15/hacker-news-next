@@ -4,7 +4,7 @@ import {
 	getAllDetails,
 	initialState,
 	getStoryComments,
-} from "../utils/helpers";
+} from "@/utils/helpers";
 import { Pagination } from "@/types/features";
 
 export const fetchTopStories = createAsyncThunk(

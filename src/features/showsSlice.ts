@@ -1,42 +1,70 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import type { AppState } from "@/store";
-// import { getAllDetails, initialState } from "./helpers";
+import type { AppState } from "@/store";
+import {
+	getAllDetails,
+	initialState,
+	getStoryComments,
+} from "@/utils/helpers";
+import { Pagination } from "@/types/features";
 
-// export const fetchShowDetails = createAsyncThunk(
-// 	"shows/showsStoryDetails",
-// 	async ({ page, limit }: Pagination) => {
-// 		const details = await getAllDetails("show", page, limit);
-// 		return { details };
-// 	},
-// );
+export const fetchShowStories = createAsyncThunk(
+	"tops/topsStoryDetails",
+	async ({ page, limit }: Pagination) => {
+		const details = await getAllDetails("top", page, limit);
+		return details;
+	},
+);
 
-// const showsSlice = createSlice({
-// 	name: "shows",
-// 	initialState,
-// 	reducers: {
-// 		loadMore: (state) => {
-// 			state.status = "idle";
-// 			state.limit += 10;
-// 		},
-// 	},
-// 	extraReducers: (builder) => {
-// 		builder
-// 			.addCase(fetchShowDetails.pending, (state) => {
-// 				state.status = "loading";
-// 			})
-// 			.addCase(fetchShowDetails.fulfilled, (state, action) => {
-// 				state.status = "succeeded";
-// 				state.details = action.payload.details;
-// 			})
-// 			.addCase(fetchShowDetails.rejected, (state) => {
-// 				state.status = "failed";
-// 				state.error = true;
-// 			});
-// 	},
-// });
+export const fetchShowComments = createAsyncThunk(
+	"tops/storyComments",
+	async (storyId: number) => {
+		const comments = await getStoryComments(storyId);
+		return { storyId, comments };
+	},
+);
 
-// export const { loadMore } = showsSlice.actions;
+const showsSlice = createSlice({
+	name: "shows",
+	initialState,
+	reducers: {
+		loadMoreStories: (state) => {
+			state.loadingStatus = "idle";
+			state.limit += 10;
+		},
+		loadMoreComments: (state) => {
+			state.commentLimit += 10;
+			state.error = "";
+		},
+	},
+	extraReducers: (builder) => {
+		builder
+			.addCase(fetchShowStories.pending, (state) => {
+				state.loadingStatus = "loading";
+			})
+			.addCase(fetchShowStories.fulfilled, (state, action) => {
+				state.loadingStatus = "succeeded";
+				state.details = [...action.payload];
+			})
+			.addCase(fetchShowStories.rejected, (state, action) => {
+				state.loadingStatus = "failed";
+				state.error = action.error.message!;
+			})
+			.addCase(fetchShowComments.pending, (state) => {
+				state.commentLoading = true;
+			})
+			.addCase(fetchShowComments.fulfilled, (state, action) => {
+				state.commentLoading = false;
+				state.comments[action.payload.storyId] = action.payload.comments;
+			})
+			.addCase(fetchShowComments.rejected, (state, action) => {
+				state.commentLoading = false;
+				state.error = action.error.message!;
+			});
+	},
+});
 
-// export const selectShows = (state: AppState) => state.shows;
+export const { loadMoreStories, loadMoreComments } = showsSlice.actions;
 
-// export default showsSlice;
+export const selectShows = (state: AppState) => state.shows;
+
+export default showsSlice;
