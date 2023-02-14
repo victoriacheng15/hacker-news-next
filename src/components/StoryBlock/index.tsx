@@ -1,8 +1,6 @@
 import {
 	Flex,
-	Text,
 	Divider,
-	Heading,
 	Modal,
 	ModalOverlay,
 	useDisclosure,
@@ -10,11 +8,20 @@ import {
 import { IItem } from "hacker-news-api-types";
 import { useAppDispatch } from "@/hooks";
 import { fetchTopComments } from "@/features/topsSlice";
-import { timeAgo } from "@/utils/timeAgo";
 import StoryCommentModal from "../StoryCommentModal";
 import StoryTitle from "./StoryTitle";
+import TextStats from "./TextStats";
 
-function StoryBlock({ title, by, time, score, descendants, id }: IItem) {
+function StoryBlock({
+	title,
+	by,
+	time,
+	score,
+	descendants,
+	id,
+	type,
+	url,
+}: IItem) {
 	const dispatch = useAppDispatch();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -24,39 +31,63 @@ function StoryBlock({ title, by, time, score, descendants, id }: IItem) {
 	}
 
 	return (
-		<Flex
-			data-id={id}
-			as="section"
-			p="3"
-			flexDir="column"
-			gap="2"
-			cursor="pointer"
-			bg="orange.50"
-			aria-label="open modal"
-			boxShadow="lg"
-			onClick={modalAndDispatch}
-		>
-			<Heading as="h3" fontSize={["lg", "xl", "2xl"]} textAlign="left">
-				{title}
-			</Heading>
-			<Divider />
-			<Flex>
-				<Text fontSize={["sm", "md", "lg"]} display="flex">
-					{score} points | by: {by} | Published {timeAgo(time as number)} ago |{" "}
-					{descendants ? `${descendants} comments` : "No comments yet"}
-				</Text>
-			</Flex>
-			<Modal
-				size="4xl"
-				isOpen={isOpen}
-				onClose={onClose}
-				blockScrollOnMount={true}
-				motionPreset="slideInBottom"
-			>
-				<ModalOverlay />
-				<StoryCommentModal id={id} />
-			</Modal>
-		</Flex>
+		<>
+			{type === "job" ? (
+				<Flex
+					data-id={id}
+					as="section"
+					p="3"
+					flexDir="column"
+					gap="2"
+					cursor="pointer"
+					bg="orange.50"
+					boxShadow="lg"
+				>
+					<StoryTitle title={title} url={url} type={type} />
+					<Divider />
+					<TextStats
+						by={by}
+						score={score}
+						time={time}
+						descendants={descendants}
+						type={type}
+					/>
+				</Flex>
+			) : (
+				<Flex
+					data-id={id}
+					as="section"
+					p="3"
+					flexDir="column"
+					gap="2"
+					cursor="pointer"
+					bg="orange.50"
+					aria-label="open modal"
+					boxShadow="lg"
+					onClick={modalAndDispatch}
+				>
+					<StoryTitle title={title} type={type} />
+					<Divider />
+					<TextStats
+						by={by}
+						score={score}
+						time={time}
+						descendants={descendants}
+						type={type}
+					/>
+					<Modal
+						size="4xl"
+						isOpen={isOpen}
+						onClose={onClose}
+						blockScrollOnMount={true}
+						motionPreset="slideInBottom"
+					>
+						<ModalOverlay />
+						<StoryCommentModal id={id} />
+					</Modal>
+				</Flex>
+			)}
+		</>
 	);
 }
 
