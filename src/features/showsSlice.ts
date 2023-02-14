@@ -8,15 +8,15 @@ import {
 import { Pagination } from "@/types/features";
 
 export const fetchShowStories = createAsyncThunk(
-	"tops/topsStoryDetails",
+	"shows/showsStoryDetails",
 	async ({ page, limit }: Pagination) => {
-		const details = await getAllDetails("top", page, limit);
+		const details = await getAllDetails("show", page, limit);
 		return details;
 	},
 );
 
 export const fetchShowComments = createAsyncThunk(
-	"tops/storyComments",
+	"shows/storyComments",
 	async (storyId: number) => {
 		const comments = await getStoryComments(storyId);
 		return { storyId, comments };
