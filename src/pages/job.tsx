@@ -34,6 +34,8 @@ function show() {
 						time={detail.time}
 						score={detail.score}
 						descendants={detail.descendants}
+						type={detail.type}
+						url={detail.url}
 					/>
 				))}
 			</Flex>
