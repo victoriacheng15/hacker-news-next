@@ -1,4 +1,7 @@
 import {
+	Link,
+	Heading,
+	Flex,
 	ModalContent,
 	ModalHeader,
 	ModalCloseButton,
@@ -6,12 +9,12 @@ import {
 	Text,
 	Divider,
 } from "@chakra-ui/react";
+import { HiOutlineExternalLink } from "react-icons/hi";
 import { useAppSelector, useAppDispatch } from "@/hooks";
 import { selectTops } from "@/features/topsSlice";
 import { loadMoreComments } from "@/features/topsSlice";
 import CommentBlock from "./CommentBlock";
 import Loading from "./LoadingInfo/Loading";
-import StoryTitle from "./StoryBlock/StoryTitle";
 import LoadMoreBtn from "./LoadMoreBtn";
 
 function StoryCommentModal({ id }: { id: number }) {
@@ -32,10 +35,17 @@ function StoryCommentModal({ id }: { id: number }) {
 	return (
 		<ModalContent>
 			<ModalHeader>
-				<StoryTitle title={currentComment.title} url={currentComment.url} />
+				<Link href={currentComment.url} isExternal>
+					<Heading as="h3" fontSize={["lg", "xl", "2xl"]}>
+						<Flex as="span" alignItems="center" gap="2">
+							{currentComment.title} <HiOutlineExternalLink />
+						</Flex>
+					</Heading>
+				</Link>
 				<Text
 					fontSize="lg"
 					lineHeight="1.75"
+					fontWeight="normal"
 					dangerouslySetInnerHTML={{ __html: currentComment.text }}
 				/>
 				<Divider mt="4" />
