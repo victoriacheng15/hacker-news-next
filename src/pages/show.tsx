@@ -24,7 +24,7 @@ function show() {
 	return (
 		<MainContainer>
 			<PageTitle pageTitle="Show Stories" />
-			<Flex flexDir="column" gap="6">
+			<Flex as="section" flexDir="column" gap="6">
 				{details.map((detail) => (
 					<StoryBlock
 						key={detail.id}
