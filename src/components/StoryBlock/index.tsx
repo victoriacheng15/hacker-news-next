@@ -36,12 +36,15 @@ function StoryBlock({
 				<Flex
 					data-id={id}
 					as="article"
-					p="3"
+					p="4"
 					flexDir="column"
 					gap="2"
 					cursor="pointer"
-					bg="orange.50"
+					bg="orange.100"
 					boxShadow="lg"
+					_hover={{
+						background: "orange.200"
+					}}
 				>
 					<StoryTitle title={title} url={url} type={type} />
 					<Divider />
@@ -57,13 +60,16 @@ function StoryBlock({
 				<Flex
 					data-id={id}
 					as="article"
-					p="3"
+					p="4"
 					flexDir="column"
 					gap="2"
 					cursor="pointer"
-					bg="orange.50"
+					bg="orange.100"
 					aria-label="open modal"
 					boxShadow="lg"
+					_hover={{
+						background: "orange.200"
+					}}
 					onClick={modalAndDispatch}
 				>
 					<StoryTitle title={title} type={type} />
