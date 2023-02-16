@@ -11,6 +11,9 @@ function LoadMoreBtn({
 			w="max-content"
 			mx="auto"
 			mt="4"
+			_hover={{
+				background: "orange.200",
+			}}
 			onClick={onClick}
 		>
 			{btnText}
