@@ -35,7 +35,7 @@ function StoryBlock({
 			{type === "job" ? (
 				<Flex
 					data-id={id}
-					as="section"
+					as="article"
 					p="3"
 					flexDir="column"
 					gap="2"
@@ -56,7 +56,7 @@ function StoryBlock({
 			) : (
 				<Flex
 					data-id={id}
-					as="section"
+					as="article"
 					p="3"
 					flexDir="column"
 					gap="2"
