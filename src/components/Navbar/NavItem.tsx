@@ -11,15 +11,23 @@ function NavItem({ to, link, onClick }: NavItemProps) {
 	return (
 		<>
 			<ListItem>
-				<Link as={NextLink} href={to} onClick={onClick}>
-					<Text
-						as="span"
-						fontSize="1.15rem"
-						fontWeight="medium"
-						textAlign="center"
-					>
-						{link}
-					</Text>
+				<Link
+					textDecoration="none"
+					as={NextLink}
+					href={to}
+					onClick={onClick}
+					p="2"
+					py="3"
+					borderRadius="lg"
+					fontSize="lg"
+					_hover={{
+						color: "gray.200",
+						fontWeight: "bold",
+						fontSize: "2xl",
+						textDecoration: "none",
+					}}
+				>
+					{link}
 				</Link>
 			</ListItem>
 		</>
