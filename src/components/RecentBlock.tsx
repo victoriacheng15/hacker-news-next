@@ -1,0 +1,42 @@
+import NextLink from "next/link";
+import { Box, Flex, Heading, Link } from "@chakra-ui/react";
+import { IItem } from "hacker-news-api-types";
+
+function RecentBlock({ stories, href }: { stories: IItem[]; href: string }) {
+
+	function capitalize(str: string) {
+		return str[0].toUpperCase() + href.slice(1);
+	}
+	return (
+		<Flex
+			as="section"
+			bg="orange.50"
+			flexDir="column"
+			gap="4"
+			p="4"
+			boxShadow="lg"
+		>
+			<Heading as="h3" fontSize="3xl" color="orange.700">{capitalize(href)}</Heading>
+			{stories.slice(0, 8).map(({ id, title }) => (
+				<Box as="article" key={id}>
+					<Heading as="h3" fontSize="lg">
+						{title}
+					</Heading>
+				</Box>
+			))}
+			<Link
+				as={NextLink}
+				bg="gray.100"
+				w="max-content"
+				p="2"
+				px="3"
+				borderRadius="lg"
+				href={`/${href}`}
+			>
+				view more
+			</Link>
+		</Flex>
+	);
+}
+
+export default RecentBlock;
