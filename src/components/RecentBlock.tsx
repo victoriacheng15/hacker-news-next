@@ -10,7 +10,7 @@ function RecentBlock({ stories, href }: { stories: IItem[]; href: string }) {
 	return (
 		<Flex
 			as="section"
-			bg="orange.50"
+			bg="orange.100"
 			flexDir="column"
 			gap="4"
 			p="4"
@@ -30,10 +30,15 @@ function RecentBlock({ stories, href }: { stories: IItem[]; href: string }) {
 				w="max-content"
 				p="2"
 				px="3"
+				fontSize="lg"
 				borderRadius="lg"
+				_hover={{
+					background: "orange.900",
+					color: "gray.100"
+				}}
 				href={`/${href}`}
 			>
-				view more
+				View More
 			</Link>
 		</Flex>
 	);
