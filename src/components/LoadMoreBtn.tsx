@@ -3,7 +3,7 @@ import { Button } from "@chakra-ui/react";
 function LoadMoreBtn({
 	btnText,
 	onClick,
-}: { btnText: string; onClick: () => void }) {
+}: LoadMoreBtnProps) {
 	return (
 		<Button
 			size="lg"
