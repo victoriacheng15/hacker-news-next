@@ -24,28 +24,31 @@ function show() {
 
 	return (
 		<>
-		<MetaHead title="Show | Hacker News Clone - Next.js" description="All the show stories!" />
-		<MainContainer>
-			<PageTitle pageTitle="Show Stories" />
-			<Flex as="section" flexDir="column" gap="6">
-				{details.map((detail) => (
-					<StoryBlock
-						key={detail.id}
-						id={detail.id}
-						title={detail.title}
-						by={detail.by}
-						time={detail.time}
-						score={detail.score}
-						descendants={detail.descendants}
-					/>
-				))}
-			</Flex>
-			<LoadingInfo status={loadingStatus} error={error} />
-			<LoadMoreBtn
-				btnText="Load More Stories!"
-				onClick={() => dispatch(loadMoreStories())}
+			<MetaHead
+				title="Show | Hacker News Clone - Next.js"
+				description="All the show stories!"
 			/>
-		</MainContainer>
+			<MainContainer>
+				<PageTitle pageTitle="Show Stories" />
+				<Flex as="section" flexDir="column" gap="6">
+					{details.map((detail) => (
+						<StoryBlock
+							key={detail.id}
+							id={detail.id}
+							title={detail.title}
+							by={detail.by}
+							time={detail.time}
+							score={detail.score}
+							descendants={detail.descendants}
+						/>
+					))}
+				</Flex>
+				<LoadingInfo status={loadingStatus} error={error} />
+				<LoadMoreBtn
+					btnText="Load More Stories!"
+					onClick={() => dispatch(loadMoreStories())}
+				/>
+			</MainContainer>
 		</>
 	);
 }

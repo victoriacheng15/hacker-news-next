@@ -1,10 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { AppState } from "@/store";
-import {
-	getAllDetails,
-	initialState,
-	getStoryComments,
-} from "@/utils/helpers";
+import { getAllDetails, initialState, getStoryComments } from "@/utils/helpers";
 import { Pagination } from "@/types/features";
 
 export const fetchTopStories = createAsyncThunk(

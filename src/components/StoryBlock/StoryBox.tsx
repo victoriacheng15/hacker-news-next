@@ -13,7 +13,7 @@ function StoryBox(props: React.HTMLAttributes<HTMLDivElement>) {
 			_hover={{
 				background: "orange.200",
 			}}
-      {...props}
+			{...props}
 		>
 			{props.children}
 		</Flex>
