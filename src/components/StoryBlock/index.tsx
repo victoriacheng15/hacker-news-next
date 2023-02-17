@@ -1,16 +1,11 @@
-import {
-	Flex,
-	Divider,
-	Modal,
-	ModalOverlay,
-	useDisclosure,
-} from "@chakra-ui/react";
+import { Divider, Modal, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import { IItem } from "hacker-news-api-types";
 import { useAppDispatch } from "@/hooks";
 import { fetchTopComments } from "@/features/topsSlice";
-import StoryCommentModal from "../StoryCommentModal";
+import StoryBox from "./StoryBox";
 import StoryTitle from "./StoryTitle";
 import TextStats from "./TextStats";
+import StoryCommentModal from "../StoryCommentModal";
 
 function StoryBlock({
 	title,
@@ -33,19 +28,7 @@ function StoryBlock({
 	return (
 		<>
 			{type === "job" ? (
-				<Flex
-					data-id={id}
-					as="article"
-					p="4"
-					flexDir="column"
-					gap="2"
-					cursor="pointer"
-					bg="orange.100"
-					boxShadow="lg"
-					_hover={{
-						background: "orange.200"
-					}}
-				>
+				<StoryBox data-id={id}>
 					<StoryTitle title={title} url={url} type={type} />
 					<Divider />
 					<TextStats
@@ -55,23 +38,9 @@ function StoryBlock({
 						descendants={descendants}
 						type={type}
 					/>
-				</Flex>
+				</StoryBox>
 			) : (
-				<Flex
-					data-id={id}
-					as="article"
-					p="4"
-					flexDir="column"
-					gap="2"
-					cursor="pointer"
-					bg="orange.100"
-					aria-label="open modal"
-					boxShadow="lg"
-					_hover={{
-						background: "orange.200"
-					}}
-					onClick={modalAndDispatch}
-				>
+				<StoryBox data-id={id} onClick={modalAndDispatch}>
 					<StoryTitle title={title} type={type} />
 					<Divider />
 					<TextStats
@@ -91,7 +60,7 @@ function StoryBlock({
 						<ModalOverlay />
 						<StoryCommentModal id={id} />
 					</Modal>
-				</Flex>
+				</StoryBox>
 			)}
 		</>
 	);
