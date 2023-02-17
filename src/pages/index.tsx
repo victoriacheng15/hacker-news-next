@@ -1,46 +1,12 @@
-import { useEffect } from "react";
 import { Flex } from "@chakra-ui/react";
-import { fetchJobStories, selectJobs } from "@/features/jobsSlice";
-import { fetchShowStories, selectShows } from "@/features/showsSlice";
-import { fetchTopStories, selectTops } from "@/features/topsSlice";
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useFetchAllStories } from "@/hooks/useFetchAllStories";
 import MetaHead from "@/components/MetaHead";
 import MainContainer from "@/components/MainContainer";
 import PageTitle from "@/components/PageTitle";
 import RecentBlock from "@/components/RecentBlock";
 
 export default function Home() {
-	const dispatch = useAppDispatch();
-
-	const {
-		details: tops,
-		loadingStatus: topLoading,
-		error: topError,
-	} = useAppSelector(selectTops);
-
-	const {
-		details: shows,
-		loadingStatus: showLoading,
-		error: showError,
-	} = useAppSelector(selectShows);
-
-	const {
-		details: jobs,
-		loadingStatus: jobLoading,
-		error: jobError,
-	} = useAppSelector(selectJobs);
-
-	useEffect(() => {
-		if (
-			topLoading === "idle" &&
-			showLoading === "idle" &&
-			jobLoading === "idle"
-		) {
-			dispatch(fetchTopStories({ page: 0, limit: 10 }));
-			dispatch(fetchShowStories({ page: 0, limit: 10 }));
-			dispatch(fetchJobStories({ page: 0, limit: 10 }));
-		}
-	}, [dispatch, topLoading, showLoading, jobLoading]);
+	const { tops, shows, jobs } = useFetchAllStories();
 
 	return (
 		<>
