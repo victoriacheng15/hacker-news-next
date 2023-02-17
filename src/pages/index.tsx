@@ -1,14 +1,13 @@
-import Head from "next/head";
 import { useEffect } from "react";
+import { Flex } from "@chakra-ui/react";
 import { fetchJobStories, selectJobs } from "@/features/jobsSlice";
 import { fetchShowStories, selectShows } from "@/features/showsSlice";
 import { fetchTopStories, selectTops } from "@/features/topsSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks";
+import MetaHead from "@/components/MetaHead";
 import MainContainer from "@/components/MainContainer";
 import PageTitle from "@/components/PageTitle";
-import Link from "next/link";
 import RecentBlock from "@/components/RecentBlock";
-import { Flex } from "@chakra-ui/react";
 
 export default function Home() {
 	const dispatch = useAppDispatch();
@@ -45,15 +44,7 @@ export default function Home() {
 
 	return (
 		<>
-			<Head>
-				<title>Hacker News - NextJs</title>
-				<meta
-					name="description"
-					content="This is a Hacker News clone - NextJs version"
-				/>
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
+			<MetaHead page="Home" description="A Hacker News clone with Next.js, Redux Toolkit, and Chakra UI that can read 8 latest recent stories for top, show and job stories." />
 			<MainContainer>
 				<PageTitle pageTitle="Recent Stories!" />
 				<Flex flexDir="column" gap="6">
