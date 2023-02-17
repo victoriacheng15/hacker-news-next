@@ -10,9 +10,7 @@ import LoadingInfo from "@/components/LoadingInfo";
 function top() {
 	const { tops, topLoading, topError, dispatchMoreTop } = useFetchTop();
 
-	const topList = tops.map((top) => (
-		<StoryBlock key={top.id} {...top} />
-	))
+	const topList = tops.map((top) => <StoryBlock key={top.id} {...top} />);
 
 	return (
 		<>

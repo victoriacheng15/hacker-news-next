@@ -8,12 +8,9 @@ import LoadMoreBtn from "@/components/LoadMoreBtn";
 import LoadingInfo from "@/components/LoadingInfo";
 
 function show() {
-	const { shows, showLoading, showError, dispatchMoreShow } =
-		useFetchShow();
+	const { shows, showLoading, showError, dispatchMoreShow } = useFetchShow();
 
-	const showList = shows.map((show) => (
-		<StoryBlock key={show.id} {...show} />
-	))
+	const showList = shows.map((show) => <StoryBlock key={show.id} {...show} />);
 
 	return (
 		<>

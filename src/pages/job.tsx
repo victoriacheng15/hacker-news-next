@@ -10,9 +10,7 @@ import LoadingInfo from "@/components/LoadingInfo";
 function show() {
 	const { jobs, jobLoading, jobError, dispatchMoreJob } = useFetchJob();
 
-	const jobList = jobs.map((job) => (
-		<StoryBlock key={job.id} {...job} />
-	))
+	const jobList = jobs.map((job) => <StoryBlock key={job.id} {...job} />);
 
 	return (
 		<>

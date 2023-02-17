@@ -9,7 +9,7 @@ export function useFetchTop() {
 		topPage,
 		topLimit,
 		dispatchTopStories,
-		dispatchMoreTop
+		dispatchMoreTop,
 	} = useFetchAllStories();
 
 	useEffect(() => {
