@@ -1,8 +1,5 @@
-import { useEffect } from "react";
 import { Flex } from "@chakra-ui/react";
-import { useAppDispatch, useAppSelector } from "@/hooks";
-import { fetchTopStories, selectTops } from "@/features/topsSlice";
-import { loadMoreStories } from "@/features/topsSlice";
+import { useFetchTop } from "@/hooks/useFetchTop";
 import MetaHead from "@/components/MetaHead";
 import MainContainer from "@/components/MainContainer";
 import PageTitle from "@/components/PageTitle";
@@ -11,15 +8,11 @@ import LoadMoreBtn from "@/components/LoadMoreBtn";
 import LoadingInfo from "@/components/LoadingInfo";
 
 function top() {
-	const dispatch = useAppDispatch();
-	const { details, loadingStatus, error, page, limit } =
-		useAppSelector(selectTops);
+	const { tops, topLoading, topError, dispatchMoreTop } = useFetchTop();
 
-	useEffect(() => {
-		if (loadingStatus === "idle") {
-			dispatch(fetchTopStories({ page, limit }));
-		}
-	}, [dispatch, loadingStatus, page, limit]);
+	const topList = tops.map((top) => (
+		<StoryBlock key={top.id} {...top} />
+	))
 
 	return (
 		<>
@@ -30,22 +23,12 @@ function top() {
 			<MainContainer>
 				<PageTitle pageTitle="Top Stories" />
 				<Flex as="section" flexDir="column" gap="6">
-					{details.map(({ id, title, by, time, score, descendants }) => (
-						<StoryBlock
-							key={id}
-							id={id}
-							title={title}
-							by={by}
-							time={time}
-							score={score}
-							descendants={descendants}
-						/>
-					))}
+					{topList}
 				</Flex>
-				<LoadingInfo status={loadingStatus} error={error} />
+				<LoadingInfo status={topLoading} error={topError} />
 				<LoadMoreBtn
 					btnText="Load More Stories!"
-					onClick={() => dispatch(loadMoreStories())}
+					onClick={() => dispatchMoreTop()}
 				/>
 			</MainContainer>
 		</>
