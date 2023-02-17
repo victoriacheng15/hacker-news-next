@@ -1,19 +1,7 @@
 import { Flex, Box, Text } from "@chakra-ui/react";
 import { timeAgo } from "@/utils/timeAgo";
 
-function TextStats({
-	by,
-	score,
-	time,
-	descendants,
-	type,
-}: {
-	by?: string;
-	score?: number;
-	time?: number;
-	descendants?: number;
-	type?: string;
-}) {
+function TextStats({ by, score, time, descendants, type }: TextStatsProps) {
 	return (
 		<Flex>
 			{type === "job" ? (

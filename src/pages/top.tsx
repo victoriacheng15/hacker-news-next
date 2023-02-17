@@ -24,7 +24,10 @@ function top() {
 
 	return (
 		<>
-			<MetaHead page="Top" description="All the top stories!" />
+			<MetaHead
+				title="Top | Hacker News Clone - Next.js"
+				description="All the top stories!"
+			/>
 			<MainContainer>
 				<PageTitle pageTitle="Top Stories" />
 				<Flex as="section" flexDir="column" gap="6">

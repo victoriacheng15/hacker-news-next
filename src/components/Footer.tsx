@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Link } from "@chakra-ui/react";
 import { SiGithub, SiLinkedin, SiTwitter } from "react-icons/si";
 
 function Footer() {
@@ -15,36 +15,27 @@ export default Footer;
 
 function Github() {
 	return (
-		<a
+		<Link
+			isExternal
 			href="https://github.com/victoriacheng15/hacker-news-next#readme"
-			target="_blank"
-			rel="noopener noreferrer"
 		>
 			<SiGithub />
-		</a>
+		</Link>
 	);
 }
 
 function Linkedin() {
 	return (
-		<a
-			href="https://www.linkedin.com/in/victoriacheng15/"
-			target="_blank"
-			rel="noopener noreferrer"
-		>
+		<Link isExternal href="https://www.linkedin.com/in/victoriacheng15/">
 			<SiLinkedin />
-		</a>
+		</Link>
 	);
 }
 
 function Twitter() {
 	return (
-		<a
-			href="https://twitter.com/viktoriacheng15"
-			target="_blank"
-			rel="noopener noreferrer"
-		>
+		<Link isExternal href="https://twitter.com/viktoriacheng15">
 			<SiTwitter />
-		</a>
+		</Link>
 	);
 }

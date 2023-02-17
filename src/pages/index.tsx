@@ -44,7 +44,10 @@ export default function Home() {
 
 	return (
 		<>
-			<MetaHead page="Home" description="A Hacker News clone with Next.js, Redux Toolkit, and Chakra UI that can read 8 latest recent stories for top, show and job stories." />
+			<MetaHead
+				title="Home | Hacker News Clone - Next.js"
+				description="A Hacker News clone with Next.js, Redux Toolkit, and Chakra UI that can read 8 latest recent stories for top, show and job stories."
+			/>
 			<MainContainer>
 				<PageTitle pageTitle="Recent Stories!" />
 				<Flex flexDir="column" gap="6">

@@ -14,3 +14,21 @@ type CommentProps = Pick<
 	StoryComments,
 	"author" | "time" | "text" | "children" | "create_at"
 >;
+
+interface TextStatsProps {
+	by?: string;
+	score?: number;
+	time?: number;
+	descendants?: number;
+	type?: string;
+}
+
+interface RecentBlockProps {
+	stories: IItem[];
+	href: string;
+}
+
+interface LoadMoreBtnProps {
+	btnText: string;
+	onClick: () => void;
+}

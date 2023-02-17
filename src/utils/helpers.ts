@@ -4,7 +4,7 @@ import axios from "axios";
 
 const BASE_URL = "https://hacker-news.firebaseio.com/v0";
 const DETAIL_URL = (id: number) => `${BASE_URL}/item/${id}.json`;
-export const ITEM_URL = "https://hn.algolia.com/api/v1/items/";
+const ITEM_URL = "https://hn.algolia.com/api/v1/items/";
 
 function getStoryType(type: string) {
 	return `${BASE_URL}/${type}stories.json`;

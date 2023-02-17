@@ -24,7 +24,10 @@ function show() {
 
 	return (
 		<>
-			<MetaHead page="Job" description="All the job stories!" />
+			<MetaHead
+				title="Job | Hacker News Clone - Next.js"
+				description="All the job stories!"
+			/>
 			<MainContainer>
 				<PageTitle pageTitle="Job Stories" />
 				<Flex as="section" flexDir="column" gap="6">
