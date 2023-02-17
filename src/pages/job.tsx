@@ -1,8 +1,5 @@
-import { useEffect } from "react";
 import { Flex } from "@chakra-ui/react";
-import { useAppDispatch, useAppSelector } from "@/hooks";
-import { fetchJobStories, selectJobs } from "@/features/jobsSlice";
-import { loadMoreStories } from "@/features/jobsSlice";
+import { useFetchJob } from "@/hooks/useFetchJob";
 import MetaHead from "@/components/MetaHead";
 import MainContainer from "@/components/MainContainer";
 import PageTitle from "@/components/PageTitle";
@@ -11,15 +8,11 @@ import LoadMoreBtn from "@/components/LoadMoreBtn";
 import LoadingInfo from "@/components/LoadingInfo";
 
 function show() {
-	const dispatch = useAppDispatch();
-	const { details, loadingStatus, error, page, limit } =
-		useAppSelector(selectJobs);
+	const { jobs, jobLoading, jobError, dispatchMoreJob } = useFetchJob();
 
-	useEffect(() => {
-		if (loadingStatus === "idle") {
-			dispatch(fetchJobStories({ page, limit }));
-		}
-	}, [dispatch, loadingStatus, page, limit]);
+	const jobList = jobs.map((job) => (
+		<StoryBlock key={job.id} {...job} />
+	))
 
 	return (
 		<>
@@ -30,24 +23,12 @@ function show() {
 			<MainContainer>
 				<PageTitle pageTitle="Job Stories" />
 				<Flex as="section" flexDir="column" gap="6">
-					{details.map(({ id, title, by, time, score, descendants, type, url }) => (
-						<StoryBlock
-							key={id}
-							id={id}
-							title={title}
-							by={by}
-							time={time}
-							score={score}
-							descendants={descendants}
-							type={type}
-							url={url}
-						/>
-					))}
+					{jobList}
 				</Flex>
-				<LoadingInfo status={loadingStatus} error={error} />
+				<LoadingInfo status={jobLoading} error={jobError} />
 				<LoadMoreBtn
 					btnText="Load More Stories!"
-					onClick={() => dispatch(loadMoreStories())}
+					onClick={() => dispatchMoreJob()}
 				/>
 			</MainContainer>
 		</>
