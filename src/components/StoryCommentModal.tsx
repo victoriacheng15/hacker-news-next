@@ -57,7 +57,6 @@ function StoryCommentModal({ id }: { id: number }) {
 					.map((comment) => (
 						<CommentBlock key={comment.id} {...comment} />
 					))}
-				{commentLoading && <Loading />}
 				{currentComment?.children.length > commentLimit && (
 					<LoadMoreBtn
 						btnText="Load More comments"
