@@ -1,8 +1,8 @@
 import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { fetchJobStories, selectJobs } from "@/features/jobsSlice";
 import { fetchShowStories, selectShows } from "@/features/showsSlice";
 import { fetchTopStories, selectTops } from "@/features/topsSlice";
-import { useAppDispatch, useAppSelector } from "@/hooks";
 import { loadMoreStories as loadMoreTop } from "@/features/topsSlice";
 import { loadMoreStories as loadMoreShow } from "@/features/showsSlice";
 import { loadMoreStories as loadMoreJob } from "@/features/jobsSlice";
@@ -58,17 +58,22 @@ export function useFetchAllStories() {
 	const dispatchJobStories = () => dispatch(fetchJobStories(jobPagination));
 	const dispatchMoreJob = () => dispatch(loadMoreJob());
 
+	const allLoadingConditions =
+		topLoading === "idle" && showLoading === "idle" && jobLoading === "idle";
+
+	const standardPagination = {
+		page: 0,
+		limit: 10,
+	}
+
 	useEffect(() => {
-		if (
-			topLoading === "idle" &&
-			showLoading === "idle" &&
-			jobLoading === "idle"
-		) {
-			dispatch(fetchTopStories({ page: 0, limit: 10 }));
-			dispatch(fetchShowStories({ page: 0, limit: 10 }));
-			dispatch(fetchJobStories({ page: 0, limit: 10 }));
+		if (allLoadingConditions) {
+			dispatch(fetchTopStories(standardPagination));
+			dispatch(fetchShowStories(standardPagination));
+			dispatch(fetchJobStories(standardPagination));
 		}
-	}, [dispatch, jobLoading, showLoading, topLoading]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [dispatch, allLoadingConditions]);
 
 	return {
 		tops,
