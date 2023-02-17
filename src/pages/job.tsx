@@ -1,4 +1,3 @@
-// /* eslint-disable react/no-children-prop */
 import { useEffect } from "react";
 import { Flex } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/hooks";
@@ -31,17 +30,17 @@ function show() {
 			<MainContainer>
 				<PageTitle pageTitle="Job Stories" />
 				<Flex as="section" flexDir="column" gap="6">
-					{details.map((detail) => (
+					{details.map(({ id, title, by, time, score, descendants, type, url }) => (
 						<StoryBlock
-							key={detail.id}
-							id={detail.id}
-							title={detail.title}
-							by={detail.by}
-							time={detail.time}
-							score={detail.score}
-							descendants={detail.descendants}
-							type={detail.type}
-							url={detail.url}
+							key={id}
+							id={id}
+							title={title}
+							by={by}
+							time={time}
+							score={score}
+							descendants={descendants}
+							type={type}
+							url={url}
 						/>
 					))}
 				</Flex>
