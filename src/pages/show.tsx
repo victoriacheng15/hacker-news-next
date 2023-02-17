@@ -4,6 +4,7 @@ import { Flex } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { fetchShowStories, selectShows } from "@/features/showsSlice";
 import { loadMoreStories } from "@/features/showsSlice";
+import MetaHead from "@/components/MetaHead";
 import MainContainer from "@/components/MainContainer";
 import PageTitle from "@/components/PageTitle";
 import StoryBlock from "@/components/StoryBlock";
@@ -22,6 +23,8 @@ function show() {
 	}, [dispatch, loadingStatus, page, limit]);
 
 	return (
+		<>
+		<MetaHead page="Show" description="All the show stories!" />
 		<MainContainer>
 			<PageTitle pageTitle="Show Stories" />
 			<Flex as="section" flexDir="column" gap="6">
@@ -43,6 +46,7 @@ function show() {
 				onClick={() => dispatch(loadMoreStories())}
 			/>
 		</MainContainer>
+		</>
 	);
 }
 
