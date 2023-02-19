@@ -11,8 +11,8 @@ import { loadMoreComments } from "@/features/commentsSlice";
 import ModalTitle from "./ModalTitle";
 import ModalText from "./ModalText";
 import Loading from "../LoadingInfo/Loading";
+import CommentBlock from "./CommentBlock";
 import LoadMoreBtn from "../LoadMoreBtn";
-import CommentBlock from "../CommentBlock";
 
 function StoryCommentModal({ id }: { id: number }) {
   const dispatch = useAppDispatch();
