@@ -8,6 +8,9 @@ interface StoryResponse {
 	error: string;
 	page: number;
 	limit: number;
+}
+
+interface CommentsResponse {
 	comments: {
 		[id: number]: Comments;
 	};

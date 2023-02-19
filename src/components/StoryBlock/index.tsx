@@ -1,11 +1,11 @@
 import { Divider, Modal, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import { IItem } from "hacker-news-api-types";
 import { useAppDispatch } from "@/hooks";
-import { fetchTopComments } from "@/features/topsSlice";
+import { fetchComments } from "@/features/commentsSlice";
 import StoryBox from "./StoryBox";
 import StoryTitle from "./StoryTitle";
 import TextStats from "./TextStats";
-import StoryCommentModal from "../StoryCommentModal";
+import CommentsModal from "../CommentsModal";
 
 function StoryBlock({
 	title,
@@ -22,7 +22,7 @@ function StoryBlock({
 
 	function modalAndDispatch() {
 		onOpen();
-		dispatch(fetchTopComments(id));
+		dispatch(fetchComments(id));
 	}
 
 	return (
@@ -58,7 +58,7 @@ function StoryBlock({
 						motionPreset="slideInBottom"
 					>
 						<ModalOverlay />
-						<StoryCommentModal id={id} />
+						<CommentsModal id={id} />
 					</Modal>
 				</StoryBox>
 			)}

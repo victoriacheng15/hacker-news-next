@@ -1,27 +1,24 @@
 import {
-	Link,
-	Heading,
-	Flex,
+	Divider,
+	ModalBody,
+	ModalCloseButton,
 	ModalContent,
 	ModalHeader,
-	ModalCloseButton,
-	ModalBody,
-	Text,
-	Divider,
 } from "@chakra-ui/react";
-import { HiOutlineExternalLink } from "react-icons/hi";
-import { useAppSelector, useAppDispatch } from "@/hooks";
-import { selectTops } from "@/features/topsSlice";
-import { loadMoreComments } from "@/features/topsSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { selectComments } from "@/features/commentsSlice";
+import { loadMoreComments } from "@/features/commentsSlice";
+import ModalTitle from "./ModalTitle";
+import ModalText from "./ModalText";
+import Loading from "../LoadingInfo/Loading";
 import CommentBlock from "./CommentBlock";
-import Loading from "./LoadingInfo/Loading";
-import LoadMoreBtn from "./LoadMoreBtn";
+import LoadMoreBtn from "../LoadMoreBtn";
 
 function StoryCommentModal({ id }: { id: number }) {
 	const dispatch = useAppDispatch();
 
 	const { comments, commentLoading, commentPage, commentLimit } =
-		useAppSelector(selectTops);
+		useAppSelector(selectComments);
 	const currentComment = comments[id];
 
 	if (commentLoading) {
@@ -35,19 +32,8 @@ function StoryCommentModal({ id }: { id: number }) {
 	return (
 		<ModalContent>
 			<ModalHeader>
-				<Link href={currentComment.url} isExternal>
-					<Heading as="h3" fontSize={["lg", "xl", "2xl"]}>
-						<Flex as="span" alignItems="center" gap="2">
-							{currentComment.title} <HiOutlineExternalLink />
-						</Flex>
-					</Heading>
-				</Link>
-				<Text
-					fontSize="lg"
-					lineHeight="1.75"
-					fontWeight="normal"
-					dangerouslySetInnerHTML={{ __html: currentComment.text }}
-				/>
+				<ModalTitle url={currentComment.url} title={currentComment.title} />
+				<ModalText text={currentComment.text} />
 				<Divider mt="4" />
 			</ModalHeader>
 			<ModalCloseButton />
