@@ -1,21 +1,13 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { AppState } from "@/store";
-import { getAllDetails, initialState, getStoryComments } from "@/utils/fetchHelpers";
 import { Pagination } from "@/types/features";
+import { getAllDetails, initialState } from "@/utils/fetchHelpers";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchShowStories = createAsyncThunk(
 	"shows/showsStoryDetails",
 	async ({ page, limit }: Pagination) => {
 		const details = await getAllDetails("show", page, limit);
 		return details;
-	},
-);
-
-export const fetchShowComments = createAsyncThunk(
-	"shows/storyComments",
-	async (storyId: number) => {
-		const comments = await getStoryComments(storyId);
-		return { storyId, comments };
 	},
 );
 
@@ -26,10 +18,6 @@ const showsSlice = createSlice({
 		loadMoreStories: (state) => {
 			state.loadingStatus = "idle";
 			state.limit += 10;
-		},
-		loadMoreComments: (state) => {
-			state.commentLimit += 10;
-			state.error = "";
 		},
 	},
 	extraReducers: (builder) => {
@@ -45,21 +33,10 @@ const showsSlice = createSlice({
 				state.loadingStatus = "failed";
 				state.error = action.error.message!;
 			})
-			.addCase(fetchShowComments.pending, (state) => {
-				state.commentLoading = true;
-			})
-			.addCase(fetchShowComments.fulfilled, (state, action) => {
-				state.commentLoading = false;
-				state.comments[action.payload.storyId] = action.payload.comments;
-			})
-			.addCase(fetchShowComments.rejected, (state, action) => {
-				state.commentLoading = false;
-				state.error = action.error.message!;
-			});
 	},
 });
 
-export const { loadMoreStories, loadMoreComments } = showsSlice.actions;
+export const { loadMoreStories } = showsSlice.actions;
 
 export const selectShows = (state: AppState) => state.shows;
 
