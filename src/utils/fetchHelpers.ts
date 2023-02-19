@@ -34,9 +34,4 @@ export const initialState: StoryResponse = {
 	error: "",
 	page: 0,
 	limit: 20,
-	comments: {},
-	commentLoading: false,
-	commentError: "",
-	commentPage: 0,
-	commentLimit: 20,
 };
