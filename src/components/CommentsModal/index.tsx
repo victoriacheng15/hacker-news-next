@@ -5,9 +5,7 @@ import {
 	ModalContent,
 	ModalHeader,
 } from "@chakra-ui/react";
-import { useAppDispatch, useAppSelector } from "@/hooks";
-import { selectComments } from "@/features/commentsSlice";
-import { loadMoreComments } from "@/features/commentsSlice";
+import { useFetchComments } from "@/hooks/useFetchComments";
 import ModalTitle from "./ModalTitle";
 import ModalText from "./ModalText";
 import Loading from "../LoadingInfo/Loading";
@@ -15,11 +13,26 @@ import CommentBlock from "./CommentBlock";
 import LoadMoreBtn from "../LoadMoreBtn";
 
 function StoryCommentModal({ id }: { id: number }) {
-	const dispatch = useAppDispatch();
+	const {
+		comments,
+		commentLoading,
+		commentPage,
+		commentLimit,
+		dispatchLoadMoreComments,
+	} = useFetchComments();
 
-	const { comments, commentLoading, commentPage, commentLimit } =
-		useAppSelector(selectComments);
 	const currentComment = comments[id];
+
+	const commentsList = currentComment?.children
+		.slice(commentPage, commentLimit)
+		.map((comment) => <CommentBlock key={comment.id} {...comment} />);
+
+	const moreComments = currentComment?.children.length > commentLimit && (
+		<LoadMoreBtn
+			btnText="Load More comments"
+			onClick={() => dispatchLoadMoreComments()}
+		/>
+	);
 
 	if (commentLoading) {
 		return (
@@ -38,17 +51,8 @@ function StoryCommentModal({ id }: { id: number }) {
 			</ModalHeader>
 			<ModalCloseButton />
 			<ModalBody>
-				{currentComment?.children
-					.slice(commentPage, commentLimit)
-					.map((comment) => (
-						<CommentBlock key={comment.id} {...comment} />
-					))}
-				{currentComment?.children.length > commentLimit && (
-					<LoadMoreBtn
-						btnText="Load More comments"
-						onClick={() => dispatch(loadMoreComments())}
-					/>
-				)}
+				{commentsList}
+				{moreComments}
 			</ModalBody>
 		</ModalContent>
 	);
