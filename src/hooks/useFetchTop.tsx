@@ -6,7 +6,6 @@ export function useFetchTop() {
 		tops,
 		topLoading,
 		topError,
-		topPage,
 		topLimit,
 		dispatchTopStories,
 		dispatchMoreTop,
@@ -16,7 +15,7 @@ export function useFetchTop() {
 		if (topLoading === "idle") {
 			dispatchTopStories();
 		}
-	}, [dispatchTopStories, topLoading, topPage, topLimit]);
+	}, [dispatchTopStories, topLoading, topLimit]);
 
 	return {
 		tops,

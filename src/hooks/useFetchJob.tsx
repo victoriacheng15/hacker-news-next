@@ -6,7 +6,6 @@ export function useFetchJob() {
 		jobs,
 		jobLoading,
 		jobError,
-		jobPage,
 		jobLimit,
 		dispatchJobStories,
 		dispatchMoreJob,
@@ -16,7 +15,7 @@ export function useFetchJob() {
 		if (jobLoading === "idle") {
 			dispatchJobStories();
 		}
-	}, [dispatchJobStories, jobLoading, jobPage, jobLimit]);
+	}, [dispatchJobStories, jobLoading, jobLimit]);
 
 	return {
 		jobs,
