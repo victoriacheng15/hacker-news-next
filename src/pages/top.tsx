@@ -1,5 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import { useFetchTop } from "@/hooks/useFetchTop";
+import { headTitle, headDescription } from "@/utils/PagesHelpers";
 import MetaHead from "@/components/MetaHead";
 import MainContainer from "@/components/MainContainer";
 import PageTitle from "@/components/PageTitle";
@@ -10,14 +11,14 @@ import LoadingInfo from "@/components/LoadingInfo";
 function top() {
 	const { tops, topLoading, topError, dispatchMoreTop } = useFetchTop();
 
+	const title = headTitle("Top");
+	const description = headDescription("top");
+
 	const topList = tops.map((top) => <StoryBlock key={top.id} {...top} />);
 
 	return (
 		<>
-			<MetaHead
-				title="Top | Hacker News Clone - Next.js"
-				description="All the top stories!"
-			/>
+			<MetaHead title={title} description={description} />
 			<MainContainer>
 				<PageTitle pageTitle="Top Stories" />
 				<Flex as="section" flexDir="column" gap="6">

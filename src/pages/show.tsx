@@ -1,5 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import { useFetchShow } from "@/hooks/useFetchShow";
+import { headTitle, headDescription } from "@/utils/PagesHelpers";
 import MetaHead from "@/components/MetaHead";
 import MainContainer from "@/components/MainContainer";
 import PageTitle from "@/components/PageTitle";
@@ -10,14 +11,14 @@ import LoadingInfo from "@/components/LoadingInfo";
 function show() {
 	const { shows, showLoading, showError, dispatchMoreShow } = useFetchShow();
 
+	const title = headTitle("Show");
+	const description = headDescription("show");
+
 	const showList = shows.map((show) => <StoryBlock key={show.id} {...show} />);
 
 	return (
 		<>
-			<MetaHead
-				title="Show | Hacker News Clone - Next.js"
-				description="All the show stories!"
-			/>
+			<MetaHead title={title} description={description} />
 			<MainContainer>
 				<PageTitle pageTitle="Show Stories" />
 				<Flex as="section" flexDir="column" gap="6">
