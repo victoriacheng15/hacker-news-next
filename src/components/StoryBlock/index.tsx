@@ -1,7 +1,6 @@
-import { Divider, Modal, ModalOverlay, useDisclosure } from "@chakra-ui/react";
+import { Divider, Modal, ModalOverlay } from "@chakra-ui/react";
 import { IItem } from "hacker-news-api-types";
-import { useAppDispatch } from "@/hooks";
-import { fetchComments } from "@/features/commentsSlice";
+import { useModel } from "@/hooks/useModal";
 import StoryBox from "./StoryBox";
 import StoryTitle from "./StoryTitle";
 import TextStats from "./TextStats";
@@ -17,13 +16,7 @@ function StoryBlock({
 	type,
 	url,
 }: IItem) {
-	const dispatch = useAppDispatch();
-	const { isOpen, onOpen, onClose } = useDisclosure();
-
-	function modalAndDispatch() {
-		onOpen();
-		dispatch(fetchComments(id));
-	}
+	const { isOpen, onClose, modalAndDispatch } = useModel();
 
 	return (
 		<>
@@ -40,7 +33,7 @@ function StoryBlock({
 					/>
 				</StoryBox>
 			) : (
-				<StoryBox data-id={id} onClick={modalAndDispatch}>
+				<StoryBox data-id={id} onClick={() => modalAndDispatch(id)}>
 					<StoryTitle title={title} type={type} />
 					<Divider />
 					<TextStats
