@@ -6,7 +6,6 @@ export function useFetchShow() {
 		shows,
 		showLoading,
 		showError,
-		showPage,
 		showLimit,
 		dispatchShowStories,
 		dispatchMoreShow,
@@ -16,7 +15,7 @@ export function useFetchShow() {
 		if (showLoading === "idle") {
 			dispatchShowStories();
 		}
-	}, [dispatchShowStories, showLoading, showPage, showLimit]);
+	}, [dispatchShowStories, showLoading, showLimit]);
 
 	return {
 		shows,
