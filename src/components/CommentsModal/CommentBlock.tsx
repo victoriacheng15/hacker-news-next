@@ -7,9 +7,11 @@ type CommentBlockProps = Pick<
 >;
 
 function CommentBlock(comment: CommentBlockProps) {
+	const filteredOutNoComments = !/dead|flagged/.test(comment.text);
+	
 	return (
 		<>
-			{!/dead|flagged/.test(comment.text) && comment.author && (
+			{filteredOutNoComments && comment.author && (
 				<Box py="2" px="4" boxShadow="lg" bg="gray.50">
 					<Text pb="1" mb="2" borderBottom="1px" fontSize="sm">
 						Posted by
@@ -18,11 +20,7 @@ function CommentBlock(comment: CommentBlockProps) {
 						</Box>{" "}
 						{timeAgo(comment.created_at_i)} ago
 					</Text>
-					<Text
-						fontSize="lg"
-						lineHeight="1.5"
-						dangerouslySetInnerHTML={{ __html: comment.text }}
-					/>
+					<CommentText text={comment.text} />
 					{comment.children?.map((comment) => (
 						<Box key={comment.id} p="2" bg="gray.100">
 							<CommentBlock key={comment.id} {...comment} />
@@ -35,3 +33,14 @@ function CommentBlock(comment: CommentBlockProps) {
 }
 
 export default CommentBlock;
+
+function CommentText({ text }: { text: string }) {
+	return (
+		<Text
+			fontSize="lg"
+			lineHeight="1.5"
+			// rome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+			dangerouslySetInnerHTML={{ __html: text }}
+		/>
+	);
+}
