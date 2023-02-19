@@ -64,7 +64,7 @@ export function useFetchAllStories() {
 	const standardPagination = {
 		page: 0,
 		limit: 10,
-	}
+	};
 
 	useEffect(() => {
 		if (allLoadingConditions) {
@@ -72,7 +72,7 @@ export function useFetchAllStories() {
 			dispatch(fetchShowStories(standardPagination));
 			dispatch(fetchJobStories(standardPagination));
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch, allLoadingConditions]);
 
 	return {

@@ -9,7 +9,7 @@ import RecentBlock from "@/components/RecentBlock";
 export default function Home() {
 	const { tops, shows, jobs } = useFetchAllStories();
 
-	const title = headTitle("Home")
+	const title = headTitle("Home");
 	const description =
 		"A Hacker News clone with Next.js, Redux Toolkit, and Chakra UI that can read 8 latest recent stories for top, show and job stories.";
 

@@ -32,7 +32,7 @@ const jobsSlice = createSlice({
 			.addCase(fetchJobStories.rejected, (state, action) => {
 				state.loadingStatus = "failed";
 				state.error = action.error.message!;
-			})
+			});
 	},
 });
 

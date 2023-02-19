@@ -32,7 +32,7 @@ const topsSlice = createSlice({
 			.addCase(fetchTopStories.rejected, (state, action) => {
 				state.loadingStatus = "failed";
 				state.error = action.error.message!;
-			})
+			});
 	},
 });
 

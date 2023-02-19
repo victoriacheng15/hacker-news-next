@@ -8,7 +8,7 @@ type CommentBlockProps = Pick<
 
 function CommentBlock(comment: CommentBlockProps) {
 	const filteredOutNoComments = !/dead|flagged/.test(comment.text);
-	
+
 	return (
 		<>
 			{filteredOutNoComments && comment.author && (

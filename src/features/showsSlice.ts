@@ -32,7 +32,7 @@ const showsSlice = createSlice({
 			.addCase(fetchShowStories.rejected, (state, action) => {
 				state.loadingStatus = "failed";
 				state.error = action.error.message!;
-			})
+			});
 	},
 });
 

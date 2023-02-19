@@ -7,7 +7,7 @@ function ModalText({ text }: { text: string }) {
 			lineHeight="1.75"
 			fontWeight="normal"
 			// rome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-      dangerouslySetInnerHTML={{ __html: text }}
+			dangerouslySetInnerHTML={{ __html: text }}
 		/>
 	);
 }
