@@ -1,6 +1,6 @@
-import type { AppState } from "@/store";
-import { Pagination } from "@/types/features";
-import { getAllDetails, initialState } from "@/utils/fetchHelpers";
+import type { AppState } from "../store";
+import { Pagination } from "../types/features";
+import { getAllDetails, initialState } from "../utils/fetchHelpers";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchJobStories = createAsyncThunk(

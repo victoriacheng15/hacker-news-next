@@ -11,7 +11,9 @@
     "rome:apply": "pnpm exec rome check ./src --apply",
     "rome:format": "pnpm exec rome format ./src",
     "rome:write": "pnpm exec rome format ./src --write",
-    "rome:run": "pnpm rome:apply && pnpm rome:write"
+    "rome:run": "pnpm rome:apply && pnpm rome:write",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.8",
@@ -36,6 +38,14 @@
     "typescript": "4.9.4"
   },
   "devDependencies": {
-    "rome": "^11.0.0"
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "@vitejs/plugin-react": "^3.1.0",
+    "@vitest/coverage-c8": "^0.28.5",
+    "jsdom": "^21.1.0",
+    "rome": "^11.0.0",
+    "vitest": "^0.28.5"
   }
 }
