@@ -1,11 +1,20 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { fetchJobStories, selectJobs } from "@/features/jobsSlice";
-import { fetchShowStories, selectShows } from "@/features/showsSlice";
-import { fetchTopStories, selectTops } from "@/features/topsSlice";
-import { loadMoreStories as loadMoreTop } from "@/features/topsSlice";
-import { loadMoreStories as loadMoreShow } from "@/features/showsSlice";
-import { loadMoreStories as loadMoreJob } from "@/features/jobsSlice";
+import {
+	fetchTopStories,
+	selectTops,
+	loadMoreStories as loadMoreTop,
+} from "@/features/topsSlice";
+import {
+	fetchShowStories,
+	selectShows,
+	loadMoreStories as loadMoreShow,
+} from "@/features/showsSlice";
+import {
+	fetchJobStories,
+	selectJobs,
+	loadMoreStories as loadMoreJob,
+} from "@/features/jobsSlice";
 
 export function useFetchAllStories() {
 	const dispatch = useAppDispatch();
@@ -63,7 +72,7 @@ export function useFetchAllStories() {
 
 	const standardPagination = {
 		page: 0,
-		limit: 10,
+		limit: 20,
 	};
 
 	useEffect(() => {
