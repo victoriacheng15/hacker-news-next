@@ -1,6 +1,6 @@
-import type { AppState } from "@/store";
-import { CommentsResponse } from "@/types/features";
-import { getStoryComments } from "@/utils/fetchHelpers";
+import type { AppState } from "../store";
+import { CommentsResponse } from "../types/features";
+import { getStoryComments } from "../utils/fetchHelpers";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchComments = createAsyncThunk(
