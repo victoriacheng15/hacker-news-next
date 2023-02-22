@@ -12,12 +12,11 @@ describe("StoryTitle component", () => {
 		expect(title).toHaveTextContent("Google");
 	});
 
-
-  it("should not have url if the type is not equal to job", () => {
-    const storyTitle = "lorem ipsum";
-    const type = "top";
-    render(<StoryTitle  title={storyTitle} type={type} />);
-    const title = screen.queryByRole("heading");
-    expect(title).toHaveTextContent("lorem ipsum");
-  });
+	it("should not have url if the type is not equal to job", () => {
+		const storyTitle = "lorem ipsum";
+		const type = "top";
+		render(<StoryTitle title={storyTitle} type={type} />);
+		const title = screen.queryByRole("heading");
+		expect(title).toHaveTextContent("lorem ipsum");
+	});
 });
