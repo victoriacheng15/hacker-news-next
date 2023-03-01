@@ -1,5 +1,5 @@
 import { Flex, Box, Text } from "@chakra-ui/react";
-import { timeAgo } from "@/utils/timeAgo";
+import { timeAgo } from "../../utils/timeAgo";
 
 function TextStats({ by, score, time, descendants, type }: TextStatsProps) {
 	return (

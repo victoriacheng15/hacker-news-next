@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import { timeAgo } from "@/utils/timeAgo";
+import { timeAgo } from "../../utils/timeAgo";
 
 type CommentBlockProps = Pick<
 	Comments,

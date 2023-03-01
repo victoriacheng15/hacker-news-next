@@ -1,6 +1,6 @@
 import { Divider, Modal, ModalOverlay } from "@chakra-ui/react";
 import { IItem } from "hacker-news-api-types";
-import { useModel } from "@/hooks/useModal";
+import { useModel } from "../../hooks/useModal";
 import StoryBox from "./StoryBox";
 import StoryTitle from "./StoryTitle";
 import TextStats from "./TextStats";

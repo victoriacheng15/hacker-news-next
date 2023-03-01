@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import { useFetchJob } from "@/hooks/useFetchJob";
+import { useFetchJob } from "../hooks/useFetchJob";
 import { headTitle, headDescription } from "@/utils/PagesHelpers";
 import MetaHead from "@/components/MetaHead";
 import MainContainer from "@/components/MainContainer";
