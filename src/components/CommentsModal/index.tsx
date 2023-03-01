@@ -5,7 +5,7 @@ import {
 	ModalContent,
 	ModalHeader,
 } from "@chakra-ui/react";
-import { useFetchComments } from "@/hooks/useFetchComments";
+import { useFetchComments } from "../../hooks/useFetchComments";
 import ModalTitle from "./ModalTitle";
 import ModalText from "./ModalText";
 import Loading from "../LoadingInfo/Loading";

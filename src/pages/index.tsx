@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
-import { useFetchAllStories } from "@/hooks/useFetchAllStories";
-import { headTitle } from "@/utils/PagesHelpers";
+import { useFetchAllStories } from "../hooks/useFetchAllStories";
+import { headTitle } from "../utils/PagesHelpers";
 import MetaHead from "@/components/MetaHead";
 import MainContainer from "@/components/MainContainer";
 import PageTitle from "@/components/PageTitle";

@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
 import {
 	selectComments,
 	fetchComments,
 	loadMoreComments,
-} from "@/features/commentsSlice";
+} from "../features/commentsSlice";
 
 export function useFetchComments() {
 	const dispatch = useAppDispatch();
