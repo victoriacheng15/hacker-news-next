@@ -1,14 +1,10 @@
 # Hacker News Clone - Next.js
 
+![hacker news clone](./hacker-news-next-app.jpg)
+
 Users can view 8 recent stories of each category, top, show, and job on the home page, and then can browse additional stories on subsequent pages. Each story block can be clicked to view its link and comments.
 
-[View the live site here](https://hacker-news-next.vercel.app/)
-
-**Tech Stack:**
-
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white) ![Redux](https://img.shields.io/badge/Redux-764ABC.svg?style=for-the-badge&logo=Redux&logoColor=white) ![Chakra UI](https://img.shields.io/badge/Chakra%20UI-319795.svg?style=for-the-badge&logo=Chakra-UI&logoColor=white) ![Testing Library](https://img.shields.io/badge/Testing%20Library-E33332.svg?style=for-the-badge&logo=Testing-Library&logoColor=white) ![Vitest](https://img.shields.io/badge/Vitest-6E9F18.svg?style=for-the-badge&logo=Vitest&logoColor=white)
-
-## The User stories
+The user should be able to:
 
 - [x] Users should be able to see 8 recent stories of each category on the home page
 - [x] Users should be able to view additional stories on subsequent pages
@@ -17,6 +13,12 @@ Users can view 8 recent stories of each category, top, show, and job on the home
 - [x] The job page should display story blocks containing the name of the company hiring, the position being advertised, the link to the job listing, the author's name, and the time since the job was posted
 - [x] Clicking on each story block should open a modal window displaying the story's link, content (if applicable), and comments
 - [x] The modal window may include a `Load More Comments` button at the bottom, allowing users to view additional comments if available
+
+[View the live site here](https://hacker-news-next.vercel.app/)
+
+## Tech Stack:
+
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white) ![Redux](https://img.shields.io/badge/Redux-764ABC.svg?style=for-the-badge&logo=Redux&logoColor=white) ![Chakra UI](https://img.shields.io/badge/Chakra%20UI-319795.svg?style=for-the-badge&logo=Chakra-UI&logoColor=white) ![Testing Library](https://img.shields.io/badge/Testing%20Library-E33332.svg?style=for-the-badge&logo=Testing-Library&logoColor=white) ![Vitest](https://img.shields.io/badge/Vitest-6E9F18.svg?style=for-the-badge&logo=Vitest&logoColor=white)
 
 ## Screenshot/GIFs
 
@@ -67,12 +69,12 @@ cd hacker-news-next
 ```
 
 ```bash
-# or your package manager preference
-npm install
+# or your preference for the package manager
+pnpm install
 ```
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 ## What have I learned
