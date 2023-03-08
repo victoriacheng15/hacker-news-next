@@ -7,7 +7,7 @@ import PageTitle from "@/components/PageTitle";
 import RecentBlock from "@/components/RecentBlock";
 
 export default function Home() {
-	const { tops, shows, jobs } = useFetchAllStories();
+	const { tops, topLoading, shows, showLoading, jobs, jobLoading } = useFetchAllStories();
 
 	const title = headTitle("Home");
 	const description =
@@ -19,9 +19,9 @@ export default function Home() {
 			<MainContainer>
 				<PageTitle pageTitle="Recent Stories!" />
 				<Flex flexDir="column" gap="6">
-					<RecentBlock stories={tops} href="top" />
-					<RecentBlock stories={shows} href="show" />
-					<RecentBlock stories={jobs} href="job" />
+					<RecentBlock stories={tops} href="top" isLoading={topLoading} />
+					<RecentBlock stories={shows} href="show" isLoading={showLoading} />
+					<RecentBlock stories={jobs} href="job" isLoading={jobLoading} />
 				</Flex>
 			</MainContainer>
 		</>
