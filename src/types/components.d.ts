@@ -26,6 +26,7 @@ interface TextStatsProps {
 interface RecentBlockProps {
 	stories: IItem[];
 	href: string;
+	isLoading: LoadingStatus;
 }
 
 interface LoadMoreBtnProps {
