@@ -1,7 +1,7 @@
 import NextLink from "next/link";
-import { Box, Flex, Heading, Link } from "@chakra-ui/react";
+import { Box, Flex, Heading, Link, Skeleton } from "@chakra-ui/react";
 
-function RecentBlock({ stories, href }: RecentBlockProps) {
+function RecentBlock({ stories, href, isLoading }: RecentBlockProps) {
 	function capitalize(str: string) {
 		return str[0].toUpperCase() + href.slice(1);
 	}
@@ -20,9 +20,11 @@ function RecentBlock({ stories, href }: RecentBlockProps) {
 			</Heading>
 			{stories.slice(0, 8).map(({ id, title }) => (
 				<Box as="article" key={id}>
-					<Heading as="h3" fontSize="lg">
-						{title}
-					</Heading>
+					<Skeleton isLoaded={isLoading === "succeeded"}>
+						<Heading as="h3" fontSize="lg">
+							{title}
+						</Heading>
+					</Skeleton>
 				</Box>
 			))}
 			<ViewMoreLink href={href} />
