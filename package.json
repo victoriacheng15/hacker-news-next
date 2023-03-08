@@ -19,7 +19,6 @@
     "@chakra-ui/react": "^2.5.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@next/font": "13.2.3",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/node": "18.14.2",
     "@types/react": "18.0.28",
