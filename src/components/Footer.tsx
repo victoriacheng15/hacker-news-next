@@ -18,6 +18,7 @@ function Github() {
 		<Link
 			isExternal
 			href="https://github.com/victoriacheng15/hacker-news-next#readme"
+			aria-label="Github"
 		>
 			<SiGithub />
 		</Link>
@@ -26,7 +27,11 @@ function Github() {
 
 function Linkedin() {
 	return (
-		<Link isExternal href="https://www.linkedin.com/in/victoriacheng15/">
+		<Link
+			isExternal
+			href="https://www.linkedin.com/in/victoriacheng15/"
+			aria-label="LinkedIn"
+		>
 			<SiLinkedin />
 		</Link>
 	);
@@ -34,7 +39,11 @@ function Linkedin() {
 
 function Twitter() {
 	return (
-		<Link isExternal href="https://twitter.com/viktoriacheng15">
+		<Link
+			isExternal
+			href="https://twitter.com/viktoriacheng15"
+			aria-label="Twitter"
+		>
 			<SiTwitter />
 		</Link>
 	);
