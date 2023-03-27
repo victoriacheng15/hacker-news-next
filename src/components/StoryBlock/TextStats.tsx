@@ -13,7 +13,7 @@ function TextStats({ by, score, time, descendants, type }: TextStatsProps) {
 					{timeAgo(time as number)} ago
 				</Text>
 			) : (
-				<Text fontSize={["sm", "md"]} display="flex">
+				<Text fontSize={["sm", "md"]} display="flex" flexWrap="wrap">
 					{score} points | Published by
 					<Box px="1" as="span" textDecoration="underline">
 						{by}
