@@ -19,7 +19,8 @@ function NavItem({ to, link, onClick }: NavItemProps) {
 					p="2"
 					py="3"
 					borderRadius="lg"
-					fontSize="lg"
+					fontWeight="semibold"
+					fontSize="xl"
 					_hover={{
 						color: "gray.200",
 						fontWeight: "bold",
