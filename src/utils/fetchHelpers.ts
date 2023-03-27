@@ -33,5 +33,5 @@ export const initialState: StoryResponse = {
 	loadingStatus: "idle",
 	error: "",
 	page: 0,
-	limit: 20,
+	limit: 10,
 };
