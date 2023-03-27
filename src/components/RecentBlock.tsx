@@ -18,15 +18,15 @@ function RecentBlock({ stories, href, isLoading }: RecentBlockProps) {
 			<Heading as="h3" fontSize="3xl" color="orange.700">
 				{capitalize(href)}
 			</Heading>
-			{stories.slice(0, 8).map(({ id, title }) => (
+			{stories.slice(0, 5).map(({ id, title }) => (
 				<Box as="article" key={id}>
-					<Skeleton isLoaded={isLoading === "succeeded"}>
-						<Heading as="h3" fontSize="lg">
-							{title}
-						</Heading>
-					</Skeleton>
+					<Heading as="h3" fontSize="lg">
+						{title}
+					</Heading>
 				</Box>
 			))}
+			{isLoading !== "succeeded" &&
+				[1, 2, 3, 4, 5].map((n) => <Skeleton key={n} h="24px" />)}
 			<ViewMoreLink href={href} />
 		</Flex>
 	);
