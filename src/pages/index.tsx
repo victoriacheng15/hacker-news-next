@@ -7,7 +7,8 @@ import PageTitle from "@/components/PageTitle";
 import RecentBlock from "@/components/RecentBlock";
 
 export default function Home() {
-	const { tops, topLoading, shows, showLoading, jobs, jobLoading } = useFetchAllStories();
+	const { tops, topLoading, shows, showLoading, jobs, jobLoading } =
+		useFetchAllStories();
 
 	const title = headTitle("Home");
 	const description =

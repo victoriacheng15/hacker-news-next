@@ -7,11 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "rome:check": "pnpm rome check ./src",
-    "rome:apply": "pnpm rome check ./src --apply",
-    "rome:format": "pnpm rome format ./src",
-    "rome:write": "pnpm rome format ./src --write",
-    "rome:run": "pnpm rome:apply && pnpm rome:write",
+    "apply": "npx biome check ./src --apply",
+    "format": "npx biome format ./src --write",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
@@ -37,6 +34,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.1.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
