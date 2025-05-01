@@ -16,7 +16,7 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@reduxjs/toolkit": "^2.6.0",
+    "@reduxjs/toolkit": "^2.7.0",
     "@types/node": "22.13.15",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
