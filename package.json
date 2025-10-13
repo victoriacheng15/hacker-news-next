@@ -39,7 +39,7 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/testing-library__jest-dom": "^5.14.9",
-    "@vitejs/plugin-react": "^4.7.0",
+    "@vitejs/plugin-react": "^5.0.4",
     "@vitest/coverage-c8": "^0.33.0",
     "jsdom": "^26.1.0",
     "rome": "^12.1.3",
